@@ -13,7 +13,7 @@
       referrerpolicy="no-referrer"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Boldonse&family=Fragment+Mono:ital@0;1&family=Tilt+Neon&family=Tilt+Warp&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Boldonse&family=Fragment+Mono:ital@0;1&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Tilt+Neon&family=Tilt+Warp&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/dist/output.css" />
@@ -106,7 +106,7 @@
         <div class="about-description text-center space-y-6">
           <h2 id="about-title" class="sr-only">About Provendo Platform</h2>
           <p
-            class="font-tilt-neon text-center text-lg md:text-xl leading-relaxed max-w-4xl mx-auto"
+            class="font-fragment-mono font-thin text-center text-lg md:text-xl leading-relaxed max-w-4xl mx-auto"
           >
             Provendo was built to eliminate the friction in modern trade. For
             years, finding the right business partners meant endless trade
@@ -167,7 +167,69 @@
 
     <section
       aria-labelledby="contact-heading"
-      class="contact-section flex flex-row w-full"
-    ></section>
+      class="contact-section flex flex-col md:flex-row justify-center items-stretch gap-0 p-5 lg:m-8 drop-shadow-lg"
+    >
+      <div
+        class="contact-img-container flex flex-col justify-between p-8 border border-gray-300 rounded-l-2xl w-full md:w-[450px] bg-white shadow-sm"
+      >
+        <div class="text-center md:text-left">
+          <h1 class="text-4xl font-fragment-mono font-semibold text-primary">
+            Get in Touch
+          </h1>
+          <p class="font-open-sans font-normal text-gray-500 mt-2">
+            We'd love to hear from you
+          </p>
+        </div>
+
+        <div class="mail-container my-6 flex justify-center items-center">
+          <img
+            src="/assets/provendo_email_card.png"
+            alt="email-logo"
+            class="w-100 h-100 object-contain"
+          />
+        </div>
+
+        <div></div>
+      </div>
+
+      <div
+        class="contact-container bg-primary w-full md:w-[450px] p-8 rounded-r-2xl text-white shadow-md flex flex-col justify-center"
+      >
+        <form action="#" class="space-y-5">
+          <div class="email-field flex flex-col gap-1.5">
+            <label
+              for="email"
+              class="email-label text-sm font-medium text-blue-100"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              class="w-full px-3.5 py-2.5 bg-white/10 border border-blue-400/30 rounded-lg text-white placeholder-blue-200/60 text-sm focus:outline-none focus:ring-2 focus:ring-white/50 transition duration-150"
+              placeholder="you@gmail.com"
+            />
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label for="concerns" class="text-sm font-medium text-blue-100"
+              >Concerns</label
+            >
+            <textarea
+              id="concerns"
+              rows="4"
+              class="w-full px-3.5 py-2.5 bg-white/10 border border-blue-400/30 rounded-lg text-white placeholder-blue-200/60 text-sm focus:outline-none focus:ring-2 focus:ring-white/50 transition duration-150 resize-none"
+              placeholder="How can we help you today?"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-2.5 px-4 bg-white text-primary font-semibold text-sm rounded-lg shadow hover:bg-blue-50 transition duration-150 cursor-pointer"
+          >
+            Send Message
+          </button>
+        </form>
+      </div>
+    </section>
   </body>
 </html>

@@ -4,6 +4,7 @@
   --font-tilt-neon: "Tilt Neon", sans-serif;
   --font-tilt-warp: "Tilt Warp", sans-serif;
   --font-boldonse: "Boldonse", sans-serif;
+  --font-open-sans: "Opens Sans", sans-serif;
   --font-fragment-mono: "Fragment Mono", monospace;
 
   /* Color utilities */
@@ -22,7 +23,6 @@
 
 /* Custom styles for the application */
 *{scroll-behavior: smooth; outline: none;}
-
 .divider-container{animation: x_scroll 100s linear infinite;}
 @keyframes x_scroll{
   0% {
