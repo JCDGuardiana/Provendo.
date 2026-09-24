@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --font-tilt-neon: "Tilt Neon", sans-serif;
+  --font-tilt-warp: "Tilt Warp", sans-serif;
+  --font-boldonse: "Boldonse", sans-serif;
+  --font-fragment-mono: "Fragment Mono", monospace;
+
+  /* Color utilities */
+  --color-primary: #1e3a8b;
+  --color-secondary: #f5945c;
+
+  /* Custom text colors using the --color- prefix */
+  --color-text-primary: #f5b03f;
+  --color-text-secondary: #FBF6F6; 
+  --color-text-tertiary: #FFE100;
+
+  /* Custom background colors using the --color- prefix */
+  --color-bg-primary: #f8f9fd;
+}
+
+
+/* Custom styles for the application */
+*{scroll-behavior: smooth; outline: none;}
+
+.divider-container{animation: x_scroll 100s linear infinite;}
+@keyframes x_scroll{
+  0% {
+    background-position: 0 0;
+  }
+  100%{
+    background-position: 100% 0;
+  }
+}
+
+

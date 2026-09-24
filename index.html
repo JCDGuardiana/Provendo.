@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+      integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Boldonse&family=Fragment+Mono:ital@0;1&family=Tilt+Neon&family=Tilt+Warp&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/dist/output.css" />
+    <title>Provendo</title>
+  </head>
+
+  <body>
+    <header
+      class="flex justify-between items-center px-6 py-3 sticky top-0 z-50 border-b border-gray-300 bg-white"
+    >
+      <div class="logo-container">
+        <a href="#" class="font-tilt-warp text-xl text-primary font-bold"
+          >Provendo .</a
+        >
+      </div>
+
+      <nav
+        class="nav-container font-tilt-neon flex justify-center items-center gap-6 font-fragment-mono text-lg"
+      >
+        <div class="navlinks">
+          <a href="#" class="hover:text-primary transition-colors">Home</a>
+        </div>
+        <div class="navlinks">
+          <a href="#" class="hover:text-primary transition-colors">About</a>
+        </div>
+        <div class="navlinks">
+          <a href="#" class="hover:text-primary transition-colors">Contact</a>
+        </div>
+      </nav>
+
+      <div class="cta-container flex gap-4 flex-row-reverse font-fragment-mono">
+        <a
+          href="#"
+          class="cta-button font-tilt-warp bg-primary text-white px-4 py-2 rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+        >
+          Sign Up
+        </a>
+        <a
+          href="#"
+          class="cta-button font-tilt-neon px-4 py-2 rounded-lg border border-black cursor-pointer hover:bg-gray-100 transition-colors"
+        >
+          Login
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section
+        aria-labelledby="hero-title"
+        class="content-container flex flex-col md:flex-row min-h-[calc(100vh-65px)] w-full"
+      >
+        <div
+          class="description-container flex-1 flex flex-col justify-center items-center p-8 md:p-12 gap-4 bg-primary text-center"
+        >
+          <h1
+            id="hero-title"
+            class="tagline uppercase font-tilt-warp text-3xl md:text-4xl tracking-widest text-center mb-4 text-text-tertiary"
+          >
+            Source effortlessly
+          </h1>
+          <p
+            class="font-tilt-neon text-center text-base md:text-lg text-text-secondary max-w-xl leading-relaxed"
+          >
+            Trade shows and cold emails are out. Direct matching is in. Provendo
+            connects businesses based on exact needs pricing, product quality,
+            and reliability. Whether you're buying or supplying, it's the
+            fastest way to grow your trade network.
+          </p>
+        </div>
+
+        <div
+          class="banner-container flex-1 flex justify-center items-center p-6 bg-white"
+        >
+          <img
+            src="/assets/provendo_about_banner_v2.png"
+            alt="Provendo Business Matching Diagram"
+            class="banner-image w-full max-w-3xl h-auto object-contain mx-auto"
+          />
+        </div>
+      </section>
+
+      <div
+        class="divider-container w-full h-20 bg-[url('/assets/provendo_divider_combined.png')] bg-repeat-x bg-contain animate-scroll-divider"
+      ></div>
+
+      <section
+        aria-labelledby="about-title"
+        class="about-container min-h-screen flex flex-col justify-center items-center gap-8 px-6 md:px-16 py-16 max-w-6xl mx-auto"
+      >
+        <div class="about-description text-center space-y-6">
+          <h2 id="about-title" class="sr-only">About Provendo Platform</h2>
+          <p
+            class="font-tilt-neon text-center text-lg md:text-xl leading-relaxed max-w-4xl mx-auto"
+          >
+            Provendo was built to eliminate the friction in modern trade. For
+            years, finding the right business partners meant endless trade
+            shows, cold outreach, and back-and-forth negotiations with zero
+            guarantee of fit. We created a smarter way to connect. By matching
+            businesses based on real criteria pricing, product specs, and
+            operational reliability Provendo cuts out the noise. Whether you are
+            looking to source high-quality inventory or expand your buyer
+            network, we bring both sides of the table together effortlessly.
+          </p>
+
+          <div
+            class="about-img-container flex flex-col justify-center items-center py-6 gap-6"
+          >
+            <div
+              class="upper-img-container flex flex-wrap justify-center items-center gap-6"
+            >
+              <img
+                src="/assets/provendo_feature_grow.png"
+                alt="Grow Network Feature"
+                class="w-[200px] h-[200px] cursor-pointer object-contain mx-auto drop-shadow-lg rounded-2xl transition-transform hover:scale-105"
+              />
+              <img
+                src="/assets/provendo_feature_discover.png"
+                alt="Discover Suppliers Feature"
+                class="w-[200px] h-[200px] cursor-pointer object-contain mx-auto drop-shadow-lg rounded-2xl transition-transform hover:scale-105"
+              />
+              <img
+                src="/assets/provendo_feature_connect.png"
+                alt="Connect Businesses Feature"
+                class="w-[200px] h-[200px] cursor-pointer object-contain mx-auto drop-shadow-lg rounded-2xl transition-transform hover:scale-105"
+              />
+            </div>
+
+            <div
+              class="lower-img-container flex flex-wrap justify-center items-center gap-6"
+            >
+              <img
+                src="/assets/provendo_feature_trust.png"
+                alt="Verified Trust Feature"
+                class="w-[200px] h-[200px] cursor-pointer object-contain mx-auto drop-shadow-lg rounded-2xl transition-transform hover:scale-105"
+              />
+              <img
+                src="/assets/provendo_feature_savetime.png"
+                alt="Save Time Feature"
+                class="w-[200px] h-[200px] cursor-pointer object-contain mx-auto drop-shadow-lg rounded-2xl transition-transform hover:scale-105"
+              />
+              <img
+                src="/assets/provendo_feature_pricing.png"
+                alt="Transparent Pricing Feature"
+                class="w-[200px] h-[200px] cursor-pointer object-contain mx-auto drop-shadow-lg rounded-2xl transition-transform hover:scale-105"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section
+      aria-labelledby="contact-heading"
+      class="contact-section flex flex-row w-full"
+    ></section>
+  </body>
+</html>
