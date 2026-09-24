@@ -286,20 +286,11 @@
   .flex-1 {
     flex: 1;
   }
-  .flex-grow {
-    flex-grow: 1;
-  }
   .grow {
     flex-grow: 1;
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
   .cursor-pointer {
     cursor: pointer;
-  }
-  .resize {
-    resize: both;
   }
   .resize-none {
     resize: none;
@@ -328,9 +319,6 @@
   .gap-0 {
     gap: 0px;
   }
-  .gap-1 {
-    gap: var(--spacing);
-  }
   .gap-1\.5 {
     gap: calc(var(--spacing) * 1.5);
   }
@@ -352,6 +340,9 @@
     --tw-space-y-reverse: 0;
     margin-block-start: calc(calc(var(--spacing) * 6) * var(--tw-space-y-reverse));
     margin-block-end: calc(calc(var(--spacing) * 6) * calc(1 - var(--tw-space-y-reverse)));
+  }
+  .overflow-hidden {
+    overflow: hidden;
   }
   .rounded-2xl {
     border-radius: var(--radius-2xl);
@@ -378,9 +369,6 @@
   .border-black {
     border-color: var(--color-black);
   }
-  .border-blue-400 {
-    border-color: var(--color-blue-400);
-  }
   .border-blue-400\/30 {
     border-color: color-mix(in srgb, oklch(70.7% 0.165 254.624) 30%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -402,12 +390,6 @@
       background-color: color-mix(in oklab, var(--color-white) 10%, transparent);
     }
   }
-  .bg-\[url\(\'\.\/assets\/provendo_divider_combined\.png\'\)\] {
-    background-image: url('./assets/provendo_divider_combined.png');
-  }
-  .bg-\[url\(\'\/assets\/provendo_divider_combined\.png\'\)\] {
-    background-image: url('/assets/provendo_divider_combined.png');
-  }
   .bg-contain {
     background-size: contain;
   }
@@ -425,9 +407,6 @@
   }
   .p-8 {
     padding: calc(var(--spacing) * 8);
-  }
-  .px-3 {
-    padding-inline: calc(var(--spacing) * 3);
   }
   .px-3\.5 {
     padding-inline: calc(var(--spacing) * 3.5);
@@ -541,12 +520,6 @@
   .uppercase {
     text-transform: uppercase;
   }
-  .underline {
-    text-decoration-line: underline;
-  }
-  .placeholder-blue-200::placeholder {
-    color: var(--color-blue-200);
-  }
   .placeholder-blue-200\/60::placeholder {
     color: color-mix(in srgb, oklch(88.2% 0.059 254.128) 60%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -565,16 +538,9 @@
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
-  }
   .drop-shadow-lg {
     --tw-drop-shadow-size: drop-shadow(0 4px 4px var(--tw-drop-shadow-color, rgb(0 0 0 / 0.15)));
     --tw-drop-shadow: drop-shadow(var(--drop-shadow-lg));
-    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
-  }
-  .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
   .transition {
@@ -676,6 +642,7 @@
 }
 .divider-container {
   animation: x_scroll 100s linear infinite;
+  background-image: url('./assets/provendo_divider_combined.png');
 }
 @keyframes x_scroll {
   0% {
@@ -772,11 +739,6 @@
   inherits: false;
   initial-value: 0 0 #0000;
 }
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @property --tw-blur {
   syntax: "*";
   inherits: false;
@@ -871,7 +833,6 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
-      --tw-outline-style: solid;
       --tw-blur: initial;
       --tw-brightness: initial;
       --tw-contrast: initial;

@@ -23,7 +23,7 @@
 
 /* Custom styles for the application */
 *{scroll-behavior: smooth; outline: none;}
-.divider-container{animation: x_scroll 100s linear infinite;}
+.divider-container{animation: x_scroll 100s linear infinite; background-image: url('./assets/provendo_divider_combined.png');}
 @keyframes x_scroll{
   0% {
     background-position: 0 0;
