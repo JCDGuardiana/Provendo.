@@ -12,6 +12,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="icon" href="./assets/provendo_icon.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Boldonse&family=Fragment+Mono:ital@0;1&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Tilt+Neon&family=Tilt+Warp&display=swap"
       rel="stylesheet"
@@ -25,8 +26,10 @@
       class="flex justify-between items-center px-6 py-3 sticky top-0 z-50 border-b border-gray-300 bg-white"
     >
       <div class="logo-container">
-        <a href="#" class="font-tilt-warp text-xl text-primary font-bold"
-          >Provendo .</a
+        <a
+          href="#"
+          class="font-tilt-warp text-xl text-text-tertiary tracking-widest font-bold"
+          >Provendo.</a
         >
       </div>
 
@@ -34,25 +37,29 @@
         class="nav-container font-tilt-neon flex justify-center items-center gap-6 font-fragment-mono text-lg"
       >
         <div class="navlinks">
-          <a href="#" class="hover:text-primary transition-colors">Home</a>
+          <a href="#home" class="hover:text-primary transition-colors">Home</a>
         </div>
         <div class="navlinks">
-          <a href="#" class="hover:text-primary transition-colors">About</a>
+          <a href="#about" class="hover:text-primary transition-colors"
+            >About</a
+          >
         </div>
         <div class="navlinks">
-          <a href="#" class="hover:text-primary transition-colors">Contact</a>
+          <a href="#contact" class="hover:text-primary transition-colors"
+            >Contact</a
+          >
         </div>
       </nav>
 
       <div class="cta-container flex gap-4 flex-row-reverse font-fragment-mono">
         <a
-          href="#"
+          href="signup.html"
           class="cta-button font-tilt-warp bg-primary text-white px-4 py-2 rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
         >
           Sign Up
         </a>
         <a
-          href="#"
+          href="login.html"
           class="cta-button font-tilt-neon px-4 py-2 rounded-lg border border-black cursor-pointer hover:bg-gray-100 transition-colors"
         >
           Login
@@ -60,7 +67,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="home">
       <section
         aria-labelledby="hero-title"
         class="content-container flex flex-col md:flex-row min-h-[calc(100vh-65px)] w-full"
@@ -103,6 +110,7 @@
 
       <section
         aria-labelledby="about-title"
+        id="about"
         class="about-container min-h-screen flex flex-col justify-center items-center gap-8 px-6 md:px-16 py-16 max-w-6xl mx-auto"
       >
         <div class="about-description text-center space-y-6">
@@ -169,6 +177,7 @@
 
     <section
       aria-labelledby="contact-heading"
+      id="contact"
       class="contact-section flex flex-col md:flex-row justify-center items-stretch gap-0 p-5 lg:m-8 drop-shadow-lg"
     >
       <div

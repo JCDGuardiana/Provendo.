@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
 
 @theme {
   --font-tilt-neon: "Tilt Neon", sans-serif;
@@ -10,11 +11,12 @@
   /* Color utilities */
   --color-primary: #1e3a8b;
   --color-secondary: #f5945c;
+  --color-tertiary: #fee201;
 
   /* Custom text colors using the --color- prefix */
   --color-text-primary: #f5b03f;
   --color-text-secondary: #FBF6F6; 
-  --color-text-tertiary: #FFE100;
+  --color-text-tertiary: #fee201;
 
   /* Custom background colors using the --color- prefix */
   --color-bg-primary: #f8f9fd;
