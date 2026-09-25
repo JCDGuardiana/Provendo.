@@ -1,16 +1,2 @@
-# Root Frontend & Node Dependencies
 node_modules/
-dist/
 .env
-
-# Java / Maven Backend Dependencies
-backend/api/api/target/
-backend/api/api/.mvn/
-backend/api/api/.env
-backend/api/api/*.log
-
-# IDE & System Files
-.idea/
-.vscode/
-*.DS_Store
-*.class

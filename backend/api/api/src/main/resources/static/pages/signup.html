@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="icon" href="./assets/provendo_icon.png" />
+    <link rel="icon" href="../assets/provendo_icon.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Boldonse&family=Fragment+Mono:ital@0;1&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Tilt+Neon&family=Tilt+Warp&display=swap"
       rel="stylesheet"
@@ -17,7 +17,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./dist/output.css" />
+    <link rel="stylesheet" href="../dist/output.css" />
     <title>Sign Up</title>
   </head>
   <body class="min-h-screen flex items-center justify-center p-4 md:p-8">
@@ -28,7 +28,7 @@
         class="w-full md:w-1/2 relative rounded-2xl overflow-hidden min-h-[600px]"
       >
         <img
-          src="./assets/provendo_signup_image.png"
+          src="../assets/provendo_signup_image.png"
           alt="signup-img"
           class="absolute inset-0 w-full h-full object-cover"
         />
@@ -48,7 +48,7 @@
         <div
           class="form-container flex flex-col justify-center space-y-4 gap-4 md:m-5"
         >
-          <form method="POST" class="space-y-4">
+          <form id="signup" class="space-y-4">
             <div
               class="username-field flex flex-col justify-around p-0 gap-3 space-y-1"
             >
@@ -253,4 +253,5 @@
       </div>
     </div>
   </body>
+  <script src="../js/signup.js"></script>
 </html>
