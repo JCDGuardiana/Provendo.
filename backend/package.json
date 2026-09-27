@@ -1,28 +1,5 @@
 {
-  "name": "provendo",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
-    "@tailwindcss/cli": "^4.3.3",
-    "bcrypt": "^5.1.1",
-    "cors": "^2.5.8",
-    "dotenv": "^18.0.4",
-    "express": "^4.19.2",
-    "mariadb": "^3.5.4",
-    "mysql2": "^3.24.4",
-    "sequelize": "^6.37.8",
-    "tailwindcss": "^4.3.3"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.14"
+    "mariadb": "^3.5.4"
   }
 }
