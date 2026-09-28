@@ -9,6 +9,12 @@ const user = sequelize.define(
       unique: true,
       allowNull: false,
     },
+    terms_agreement:
+    {
+      type: DataTypes.BOOLEAN,
+      ischecked: false, 
+      allowNull: false
+    },
     password:{
       type: DataTypes.STRING, 
       allowNull: false
