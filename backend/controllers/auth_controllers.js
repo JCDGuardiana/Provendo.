@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const {OAuth2Client} = require("google-auth-library");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+const jwt = require("jsonwebtoken");
 
 exports.signup = async(req, res) => {
   const { username, password, terms_agreement } = req.body;
@@ -43,7 +44,7 @@ exports.googleAuth = async(req, res) => {
     const {credential} = req.body;
 
     if(!credential){
-      return res.status(400).json({message: "Error"})
+      return res.status(400).json({message: "Invalid Credentials"})
     }
     try{
       const ticket = await client.verifyIdToken({
@@ -58,5 +59,47 @@ exports.googleAuth = async(req, res) => {
     }catch(error){
       console.error(error); 
       return res.status(400).json({message: "ERROR"});
+    }
+}
+
+
+exports.login = async(req, res) =>{
+    const { username, password} = req.body; 
+
+    if(!username || !password){
+      return res.status(400).json({message:"Username and Password are required"})
+    }
+
+    try{
+      const user = await User.findOne({where : {username}})
+      
+      if(!user){
+        return res.status(401).json({message: "Incorrect Username or Password"});
+      }
+
+      const isValid = await bcrypt.compare(password, User.password); 
+
+      if(!isValid){
+        return res.status(401).json({message: "Incorrect Username or Password"}); 
+      }
+
+      //syntax parameter jwy.sign(payload, secret key, options/callback)
+      const token = await jwt.sign(
+        {userId: user.id, username: user.username},//payload
+        procee.env.JWT_SECRET,//secret key 
+        {expiresIn: "1h"}//options 
+      );
+
+      return res.status(200).json({
+        message:"Login Successful",
+        token, 
+        user:{
+          id: user.id,
+          username: user.username
+        }
+      })
+    }catch(error){
+      console.error(error); 
+      return res.status(500).json({message: "Something Went Wrong"});
     }
 }
