@@ -21,7 +21,9 @@
     <link rel="stylesheet" href="../dist/output.css" />
     <title>Sign Up</title>
   </head>
-  <body class="min-h-screen flex items-center justify-center p-4 md:p-8">
+  <body
+    class="min-h-screen flex items-center justify-center p-4 md:p-8 overflow-hidden"
+  >
     <div
       class="card-container rounded-3xl shadow-xl w-full max-w-5xl overflow-hidden flex flex-col md:flex-row p-4 md:p-6 gap-6"
     >
@@ -44,6 +46,11 @@
           >
             Provendo.
           </p>
+          <p
+            class="font-tilt-warp uppercase text-center text-lg text-text-secondary underline gap-3 tracking-widest"
+          >
+            sign up
+          </p>
         </div>
 
         <div
@@ -53,7 +60,7 @@
             <div
               class="username-field flex flex-col justify-around p-0 gap-3 space-y-1"
             >
-              <label for="Email" class="font-open-sans text-md text-white"
+              <label for="Username" class="font-open-sans text-md text-white"
                 >Username</label
               >
               <div class="relative flex items-center">
@@ -98,7 +105,7 @@
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="size-6 text-black"
+                    class="size-6"
                   >
                     <path
                       stroke-linecap="round"
@@ -200,7 +207,7 @@
 
             <button
               type="submit"
-              class="cursor-pointer w-full h-5 p-5 flex items-center justify-center rounded-xl text-white bg-blue-600 font-tilt-warp trackign-widest"
+              class="cursor-pointer w-full h-5 p-5 flex items-center justify-center rounded-xl text-white bg-blue-600 font-tilt-warp tracking-widest"
             >
               Sign Up
               <span
@@ -233,5 +240,6 @@
       </div>
     </div>
   </body>
+  <script src="../utils/helpers.js"></script>
   <script src="../js/signup.js"></script>
 </html>

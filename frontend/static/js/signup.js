@@ -47,7 +47,7 @@ window.addEventListener("load", () => {
     theme: "outline",
     size: "large",
     text: "signup_with",
-    width: 350,
+    width: 400,
     cursor: "pointer",
   });
 });
