@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt"); 
 const User = require("../models/user");
-
+const {OAuth2Client} = require("google-auth-library");
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 exports.signup = async(req, res) => {
   const { username, password, terms_agreement } = req.body;
@@ -39,5 +40,23 @@ exports.signup = async(req, res) => {
 
 
 exports.googleAuth = async(req, res) => {
+    const {credential} = req.body;
 
+    if(!credential){
+      return res.status(400).json({message: "Error"})
+    }
+    try{
+      const ticket = await client.verifyIdToken({
+        idToken: credential, 
+        audience: process.env.GOOGLE_CLIENT_ID
+      });
+
+      const payload = ticket.getPayload();
+      console.log(payload);
+     return res.status(200).json({ message: "Google sign-in verified" });
+
+    }catch(error){
+      console.error(error); 
+      return res.status(400).json({message: "ERROR"});
+    }
 }
