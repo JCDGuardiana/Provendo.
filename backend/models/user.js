@@ -29,7 +29,7 @@ const user = sequelize.define(
     terms_agreement:
     {
       type: DataTypes.BOOLEAN,
-      ischecked: false, 
+      defaultValue: false, 
       allowNull: false
     },
   }

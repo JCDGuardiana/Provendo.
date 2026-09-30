@@ -44,7 +44,7 @@ async function responseHandler(response) {
     const res = await fetch("http://localhost:3000/api/auth/google", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ credential: response.credential }),
+      body: JSON.stringify({ credential: response.credential, isSignup: true}),
     });
 
     const data = await res.json();

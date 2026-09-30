@@ -40,29 +40,41 @@ exports.signup = async(req, res) => {
 };
 
 
-exports.googleAuth = async(req, res) => {
-    const {credential} = req.body;
+exports.googleAuth = async (req, res) => {
+  const { credential, isSignup } = req.body;
 
-    if(!credential){
-      return res.status(400).json({message: "Invalid Credentials"})
-    }
-    try{
-      const ticket = await client.verifyIdToken({
-        idToken: credential, 
-        audience: process.env.GOOGLE_CLIENT_ID
+  if (!credential) {
+    return res.status(400).json({ message: "Invalid Credentials" });
+  }
+  try {
+    const ticket = await client.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+
+    let user = await User.findOne({ where: { googleId: payload.sub } });
+
+    if (!user) {
+      if (!isSignup) {
+        return res.status(404).json({ message: "No account found. Please sign up first" });
+      }
+
+      user = await User.create({
+        username: payload.email,
+        googleId: payload.sub,
+        googleEmail: payload.email,
+        terms_agreement: true,
       });
-
-      const payload = ticket.getPayload();
-
-
-      return res.status(200).json({ message: "Google sign-in verified" });
-
-    }catch(error){
-      console.error(error); 
-      return res.status(400).json({message: "ERROR"});
     }
-}
 
+    return res.status(200).json({ message: "Google sign-in verified", userID: user.id });
+  } catch (error) {
+    console.error(error);
+    return res.status(400).json({ message: "ERROR" });
+  }
+};
 
 exports.login = async(req, res) =>{
     const { username, password} = req.body; 
@@ -84,8 +96,8 @@ exports.login = async(req, res) =>{
         return res.status(401).json({message: "Incorrect Username or Password"}); 
       }
 
-      //syntax parameter jwy.sign(payload, secret key, options/callback)
-      const token = await jwt.sign(
+      //syntax parameter jwt.sign(payload, secret key, options/callback)
+      const token = jwt.sign(
         {userId: user.id, username: user.username},//payload
         process.env.JWT_SECRET,//secret key 
         {expiresIn: "1h"}//options 

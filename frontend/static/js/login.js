@@ -4,13 +4,17 @@ document.getElementById("forms").addEventListener('submit', async (e) => {
     const username = document.getElementById("username").value; 
     const password = document.getElementById("password").value;
 
+
+
   try{
     const res = await fetch("http://localhost:3000/api/auth/login",{
       method: "POST", 
-      header: {"Content-Type":"application/json"},
+      headers: {"Content-Type":"application/json"},
       body: JSON.stringify({username, password})
     })
-    const data = await res.json();
+
+      const data = await res.json(); 
+      console.log("RESPONSE: ",data)
 
     if(res.ok){
       window.location.href = "dashboard.html"
