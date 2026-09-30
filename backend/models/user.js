@@ -7,18 +7,31 @@ const user = sequelize.define(
     username:{
       type: DataTypes.STRING,
       unique: true,
-      allowNull: false,
+      allowNull: false
     },
+
+    password:{
+      type: DataTypes.STRING, 
+      allowNull: true
+    },
+
+    googleId:{
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: true
+    },
+    
+    googleEmail:{
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    
     terms_agreement:
     {
       type: DataTypes.BOOLEAN,
       ischecked: false, 
       allowNull: false
     },
-    password:{
-      type: DataTypes.STRING, 
-      allowNull: false
-    }
   }
 )
 

@@ -53,8 +53,9 @@ exports.googleAuth = async(req, res) => {
       });
 
       const payload = ticket.getPayload();
-      console.log(payload);
-     return res.status(200).json({ message: "Google sign-in verified" });
+
+
+      return res.status(200).json({ message: "Google sign-in verified" });
 
     }catch(error){
       console.error(error); 
@@ -77,7 +78,7 @@ exports.login = async(req, res) =>{
         return res.status(401).json({message: "Incorrect Username or Password"});
       }
 
-      const isValid = await bcrypt.compare(password, User.password); 
+      const isValid = await bcrypt.compare(password, user.password); 
 
       if(!isValid){
         return res.status(401).json({message: "Incorrect Username or Password"}); 
@@ -86,7 +87,7 @@ exports.login = async(req, res) =>{
       //syntax parameter jwy.sign(payload, secret key, options/callback)
       const token = await jwt.sign(
         {userId: user.id, username: user.username},//payload
-        procee.env.JWT_SECRET,//secret key 
+        process.env.JWT_SECRET,//secret key 
         {expiresIn: "1h"}//options 
       );
 

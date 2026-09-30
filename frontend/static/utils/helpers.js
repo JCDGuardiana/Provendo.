@@ -3,6 +3,7 @@ const passwordInput = document.getElementById("password");
 const eyesOpen = document.getElementById("eyesOpen");
 const eyesClosed = document.getElementById("eyesClosed");
 
+
 const inputType = () => {
   passwordInput.type = passwordInput.type === "password" ? "text" : "password"; 
   eyesOpen.classList.toggle("hidden")
