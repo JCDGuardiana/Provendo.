@@ -69,7 +69,20 @@ exports.googleAuth = async (req, res) => {
       });
     }
 
-    return res.status(200).json({ message: "Google sign-in verified", userID: user.id });
+    const token = jwt.sign(
+      {userId: user.id, username: user.username}, 
+      process.env.JWT_SECRET, 
+      {expiresIn: "1h"}
+    )
+
+    return res.status(200).json({
+      message: "Google sign-in successful", 
+      token, 
+      user:{
+        id: user.id, 
+        user: user.username
+      }
+    })
   } catch (error) {
     console.error(error);
     return res.status(400).json({ message: "ERROR" });
