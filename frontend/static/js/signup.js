@@ -3,6 +3,7 @@ document.getElementById("forms").addEventListener('submit', async(e) => {
 
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value
+      const email = document.getElementById("email").value;
       const terms_agreement = document.querySelector("#privacy").checked; 
 
     //execution 
@@ -10,13 +11,15 @@ document.getElementById("forms").addEventListener('submit', async(e) => {
         const response = await fetch("http://localhost:3000/api/auth/signup", {
         method:"POST",
         headers :{"Content-Type" : "application/json"},
-        body: JSON.stringify({username, password, terms_agreement}),
+        body: JSON.stringify({username, password, email,terms_agreement}),
       });
 
       const data = await response.json()
-
+      console.log(data);
       if(response.ok){
-        window.location.href = "login.html";
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("username", username);
+        window.location.href = "/login";
       }
     }catch(error){
       console.log(error);
@@ -50,7 +53,9 @@ async function responseHandler(response) {
     const data = await res.json();
 
     if (res.ok) {
-      window.location.href = "login.html";
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("username", data.user.username)
+      window.location.href = "/login";
     }
   } catch (error) {
     console.error(error);

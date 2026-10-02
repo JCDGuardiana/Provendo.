@@ -17,7 +17,7 @@ document.getElementById("forms").addEventListener('submit', async (e) => {
       console.log("RESPONSE: ",data)
 
     if(res.ok){
-      window.location.href = "dashboard.html"
+      window.location.href = "/dashboard"
     }
   }
   catch(error){
@@ -52,7 +52,7 @@ async function responseHandler(response) {
     const data = await res.json();
 
     if (res.ok) {
-      window.location.href = "dashboard.html"; // or wherever logged-in users land
+      window.location.href = "/dashboard"; // or wherever logged-in users land
     }
   } catch (error) {
     console.error(error);

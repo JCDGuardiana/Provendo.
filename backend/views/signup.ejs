@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="../assets/provendo_icon.png" />
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="/assets/provendo_icon.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Boldonse&family=Fragment+Mono:ital@0;1&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Tilt+Neon&family=Tilt+Warp&display=swap"
       rel="stylesheet"
@@ -18,38 +18,80 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="../dist/output.css" />
-    <title>Login</title>
+    <link rel="stylesheet" href="/dist/output.css" />
+    <title>Sign Up</title>
   </head>
   <body class="min-h-screen flex items-center justify-center p-4 md:p-8">
     <div
-      class="card-container rounded-3xl shadow-xl w-full max-w-5xl overflow-hidden flex flex-col md:flex-row p-4 md:p-6 gap-6"
+      class="card-container rounded-3xl shadow-xl w-full max-w-5xl overflow-hidden flex flex-col md:flex-row p-4 md:p-6 m-o"
     >
       <div
-        class="w-full md:w-1/2 flex flex-col p-4 md:p-6 rounded-xl bg-primary"
+        class="w-full md:w-1/2 relative rounded-2xl overflow-hidden min-h-[600px]"
       >
-        <div class="title-container text-center p-5">
+        <img
+          src="/assets/provendo_signup_image.png"
+          alt="signup-img"
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+      </div>
+
+      <div
+        class="w-full m-0 md:w-1/2 flex flex-col p-3 md:p-6 bg-primary rounded-2xl"
+      >
+        <div class="title-container text-center p-5 m-0">
           <p
-            class="font-tilt-warp text-center text-4xl font-bold text-text-tertiary tracking-widest"
+            class="font-tilt-warp text-center text-xl font-bold text-text-tertiary tracking-widest"
           >
             Provendo.
           </p>
           <p
-            class="font-tilt-warp text-center uppercase text-lg text-text-secondary gap-3 tracking-widest"
+            class="font-tilt-warp uppercase text-center text-lg text-text-secondary underline gap-3 tracking-widest"
           >
-            Login
+            sign up
           </p>
         </div>
 
-        <div class="form-container flex flex-col space-y-4 gap-4 md:m-5">
+        <div
+          class="form-container flex flex-col justify-center space-y-4 gap-4 md:m-5"
+        >
           <form id="forms" class="space-y-4">
             <div
               class="username-field flex flex-col justify-around p-0 gap-3 space-y-1"
             >
-              <label for="username" class="font-open-sans text-md text-white"
+              <label for="Username" class="font-open-sans text-md text-white"
                 >Username</label
               >
-
+              <div class="relative flex items-center">
+                <span class="absolute left-5 top-1/2 -translate-1/2"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                    />
+                  </svg>
+                </span>
+                <input
+                  type="text"
+                  placeholder="Username"
+                  id="username"
+                  class="w-full border border-white p-2 pl-10 bg-white text-gray rounded-xl font-tilt-neon"
+                />
+              </div>
+            </div>
+            <div
+              class="email-field flex flex-col justify-around p-0 gap-3 space-y-1"
+            >
+              <label for="email" class="font-open-sans text-md text-white"
+                >Email</label
+              >
               <div class="relative flex items-center">
                 <span class="absolute left-4 top-1/2 -translate-y-1/2">
                   <svg
@@ -63,36 +105,36 @@
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                      d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
                     />
                   </svg>
                 </span>
-
                 <input
-                  type="text"
-                  placeholder="Username"
-                  id="username"
+                  type="email"
+                  placeholder="you@gmail.com"
+                  id="email"
+                  required
                   class="w-full border border-white p-2 pl-11 bg-white text-gray rounded-xl font-tilt-neon"
                 />
               </div>
             </div>
-
             <div
               class="password-field flex flex-col justify-around p-0 gap-3 space-y-1"
             >
-              <label for="password" class="text-white font-open-sans text-md"
+              <label
+                for="password"
+                class="text-white font-open-sans text-md text-white"
                 >Password</label
               >
-
               <div class="relative flex items-center text-center">
-                <span class="absolute left-4 top-1/2 -translate-y-1/2">
-                  <svg
+                <span class="absolute left-5 top-1/2 -translate-1/2"
+                  ><svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="size-5 text-black"
+                    class="size-6"
                   >
                     <path
                       stroke-linecap="round"
@@ -101,17 +143,16 @@
                     />
                   </svg>
                 </span>
-
                 <input
                   type="password"
                   placeholder="password"
                   id="password"
-                  class="bg-white w-full p-2 pl-11 rounded-xl"
+                  class="bg-white w-full p-2 rounded-xl pl-10"
                 />
                 <button
                   id="togglePassword"
                   type="button"
-                  class="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer"
+                  class="absolute right-2 top-1/2 -translate-1/2 cursor-pointer"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +160,7 @@
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="size-5"
+                    class="size-6"
                     id="eyesClosed"
                   >
                     <path
@@ -135,7 +176,7 @@
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="size-5 hidden"
+                    class="size-6 hidden"
                     id="eyesOpen"
                   >
                     <path
@@ -153,11 +194,51 @@
               </div>
             </div>
 
+            <div class="check-box flex items-center gap-4">
+              <label
+                class="relative flex items-center justify-center cursor-pointer"
+              >
+                <input type="checkbox" id="privacy" class="sr-only peer" />
+
+                <div
+                  class="w-4 h-4 rounded border border-gray-400 bg-white peer-checked:bg-green-600 peer-checked:border-green-600 transition-colors"
+                ></div>
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="3"
+                  stroke="currentColor"
+                  class="w-3 h-3 text-white absolute opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m4.5 12.75 6 6 9-13.5"
+                  />
+                </svg>
+              </label>
+
+              <label
+                for="privacy"
+                class="text-xs text-gray-300 cursor-pointer select-none"
+              >
+                I agree to
+                <a
+                  href="/privacy"
+                  target="_blank"
+                  class="text-blue-400 underline hover:text-blue-300"
+                  >Privacy & Policy</a
+                >
+              </label>
+            </div>
+
             <button
               type="submit"
-              class="cursor-pointer w-full h-5 p-5 flex items-center justify-center rounded-xl text-white bg-blue-600 font-tilt-warp tracking-widest"
+              class="cursor-pointer mb-0 w-full h-5 p-5 flex items-center justify-center rounded-xl text-white bg-blue-600 font-tilt-warp tracking-widest"
             >
-              Sign in
+              Sign Up
               <span
                 ><svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -165,37 +246,31 @@
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="size-6 ml-2"
+                  class="size-6 ml-4"
                 >
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
+                    d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
                   />
                 </svg>
               </span>
             </button>
           </form>
-          <h6 class="text-center font-tilt-warp text-white uppercase">or</h6>
-          <div class="flex justify-center" id="googleBtn"></div>
+
+          <h6 class="text-center font-tilt-warp text-white uppercase m-0 p-0">
+            or
+          </h6>
+
+          <div id="googleBtn" class="flex justify-center"></div>
           <p class="text-center text-white text-sm">
-            Dont have an account yet??
-            <span><a href="signup.html" class="underline">Sign up</a></span>
+            Already have an account??
+            <span><a href="/login" class="underline">Login</a></span>
           </p>
         </div>
       </div>
-
-      <div
-        class="w-full md:w-1/2 relative rounded-2xl overflow-hidden min-h-[600px]"
-      >
-        <img
-          src="../assets/provendo_login_image.png"
-          alt="login-img"
-          class="absolute inset-0 w-full h-full object-cover"
-        />
-      </div>
     </div>
   </body>
-  <script src="../utils/helpers.js"></script>
-  <script src="../js/login.js"></script>
+  <script src="/js/utils/helpers.js"></script>
+  <script src="/js/signup.js"></script>
 </html>

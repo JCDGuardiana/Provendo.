@@ -5,10 +5,10 @@ const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const jwt = require("jsonwebtoken");
 
 exports.signup = async(req, res) => {
-  const { username, password, terms_agreement } = req.body;
+  const { username, password, email, terms_agreement } = req.body;
 
-  if(!username || !password){
-    return res.status(400).json({message: "Username and Password should not be empty"});
+  if(!username || !password  || !email){
+    return res.status(400).json({message: "Username, Email and Password should not be empty"});
   }
 
   if(password.length < 8){
@@ -17,6 +17,10 @@ exports.signup = async(req, res) => {
 
   if(!terms_agreement){
     return res.status(400).json({message: "You must agree to the Privacy Policy"});
+  }
+
+  if(!email === "" && !email.includes("@") && !email === "gmail.com"){
+    return res.status(400).json({message: "Invalid Email"});
   }
 
   try{
@@ -29,7 +33,7 @@ exports.signup = async(req, res) => {
     const hashPassword = await bcrypt.hash(password, 10);
 
     //creating new user 
-    const newUser = await User.create({username, password:hashPassword, terms_agreement});
+    const newUser = await User.create({username, email, password:hashPassword, terms_agreement});
     
     return res.status(201).json({message:"Signup Successful", userID:newUser.id})
   }catch(error){
@@ -64,6 +68,7 @@ exports.googleAuth = async (req, res) => {
       user = await User.create({
         username: payload.email,
         googleId: payload.sub,
+        email: payload.email,
         googleEmail: payload.email,
         terms_agreement: true,
       });
