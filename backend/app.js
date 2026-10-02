@@ -23,10 +23,13 @@ app.get("/signup", (req, res) => {
   res.render("signup", { title: "signup" });
 })
 
-
 app.get("/login", (req, res) => {
   res.render("login", {title: "login"});
 })
+
+app.get("/resetpassword", (req, res) => {
+  res.render("resetpassword", {title: "reset password"});
+});
 
 app.get("/dashboard", (req, res) => {
   res.render("dashboard", {title: "dashboard"});

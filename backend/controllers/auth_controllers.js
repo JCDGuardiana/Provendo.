@@ -134,3 +134,7 @@ exports.login = async(req, res) =>{
       return res.status(500).json({message: "Something Went Wrong"});
     }
 }
+
+exports.resetpassword = async (req, res) => {
+  const  {email, newPassword} = req.body;
+}
