@@ -135,6 +135,6 @@ exports.login = async(req, res) =>{
     }
 }
 
-exports.resetpassword = async (req, res) => {
-  const  {email, newPassword} = req.body;
+exports.forgotpassword = async (req, res) => {
+  const   {email, newPassword} = req.body;
 }

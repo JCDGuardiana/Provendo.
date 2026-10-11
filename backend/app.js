@@ -27,8 +27,8 @@ app.get("/login", (req, res) => {
   res.render("login", {title: "login"});
 })
 
-app.get("/resetpassword", (req, res) => {
-  res.render("resetpassword", {title: "reset password"});
+app.get("/forgotpassword", (req, res) => {
+  res.render("forgotpassword", {title: "forgotpassword"});
 });
 
 app.get("/dashboard", (req, res) => {
