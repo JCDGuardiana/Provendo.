@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "scripts": {
+     "build:css": "tailwindcss -i ./frontend/static/css/input.css -o ./frontend/static/dist/output.css",
+     "watch:css": "tailwindcss -i ./frontend/static/css/input.css -o ./frontend/static/dist/output.css --watch",
+     "test": "echo \"Error: no test specified\" && exit 1"
+   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JCDGuardiana/Provendo..git"

@@ -14,9 +14,8 @@
   --color-tertiary: #fee201;
 
   /* Custom text colors using the --color- prefix */
-  --color-text-primary: #f5b03f;
-  --color-text-secondary: #FBF6F6; 
-  --color-text-tertiary: #fee201;
+  --color-subtext: #FBF6F6; 
+  --color-accent-text: #086288;
 
   /* Custom background colors using the --color- prefix */
   --color-bg-primary: #f8f9fd;
