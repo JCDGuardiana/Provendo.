@@ -13,10 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
   //second step 
   const codeError = document.getElementById("codeError");
   const codebox = document.querySelectorAll(".codebox")
+  const codeform = document.getElementById("codeform");
+  const code = document.getElementById("code");
 
-
-
-
+  const formpassword = document.getElementById("formpassword");
+  const pwd1 = document.getElementById("pw1");
+  const pwd2 = document.getElementById("pw2");
+  const pwdError = document.getElementById("pwdError");
 
 
   console.log(section, dots);
