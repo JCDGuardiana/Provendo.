@@ -136,5 +136,23 @@ exports.login = async(req, res) =>{
 }
 
 exports.forgotpassword = async (req, res) => {
-  const   {email, newPassword} = req.body;
+  const   {email} = req.body;
+
+  //if all fields are empty
+  if(!email){
+    return res.status(400).json({message: "Email is required"});
+  }
+
+  //check if the email exists in the database
+  try{
+    const user = await User.findOne({where: {email}});
+      if(!user){
+        return res.status(404).json({message: "Email does not exist"});
+      }
+  }catch(error){
+    console.error(error);
+    return res.status(500).json({message: "Something went wrong"});
+  }
+
+
 }
