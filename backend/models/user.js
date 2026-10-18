@@ -38,6 +38,14 @@ const user = sequelize.define(
       defaultValue: false, 
       allowNull: false
     },
+    resetcode:{
+      type: DataTypes.STRING,
+      allowNull: true
+    }, 
+    resetcode_expiry:{
+      type: DataTypes.DATE,
+      allowNull: true
+    }
   }
 )
 

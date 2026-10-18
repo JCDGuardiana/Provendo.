@@ -1,6 +1,8 @@
 const bcrypt = require("bcrypt"); 
 const User = require("../models/user");
 const {OAuth2Client} = require("google-auth-library");
+const nodemailer = require("nodemailer");
+const crypto = require("crypto");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const jwt = require("jsonwebtoken");
 
@@ -149,10 +151,91 @@ exports.forgotpassword = async (req, res) => {
       if(!user){
         return res.status(404).json({message: "Email does not exist"});
       }
+
+      if(!user.password){
+        return res.status(400).json({message: "You cannot reset password for Google account"});
+      }
+
+  //if email exists, send a code to the email
+      const code = Math.floor(100000 + Math.random() * 900000).toString(); //generate a random 6-digit code
+
+      //hash code before sending it to the email 
+      const hashedCode = crypto.createHash('sha256').update(code).digest('hex');
+      
+      user.resetcode = hashedCode; //store the hashed code in the user model
+      user.resetcode_expiry = new Date(Date.now() + 2 * 60 * 1000); //set the code life in 2 minutes 
+      
+      await user.save(); //save the user model
+
+
+    //send the code to the email  
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_HOST,
+        pass: process.env.EMAIL_PASS
+      }
+    })
+
+    const mailOptions = {
+      from: process.env.EMAIL_HOST,
+      to: email,
+      subject: 'Password Reset Code',
+      text: `Your password reset code is ${code}. It will expire in 2 minutes.`
+    }; 
+
+    await transporter.sendMail(mailOptions); 
+
+    return res.status(200).json({message: "Reset code sent to email"});
+
   }catch(error){
     console.error(error);
     return res.status(500).json({message: "Something went wrong"});
   }
+}
+
+exports.codeverify = async (req, res) => {
+  try {
+    const { email, code } = req.body;
+
+    const user = await User.findOne({ where: { email } });
+
+    if (!user) {
+      return res.status(404).json({ message: "No user exist" });
+    }
+
+    if (!user.resetcode || !user.resetcode_expiry) {
+      return res.status(400).json({ message: "No reset code found. Please request a new code." });
+    }
+
+    // Check if the code has expired first
+    if (user.resetcode_expiry < new Date()) {
+      return res.status(400).json({ message: "Verification code expired, please request a new code" }); 
+    }
+
+    // Hash the incoming code
+    const hashedCode = crypto.createHash('sha256').update(code).digest('hex');
+
+    // Compare user.resetcode with hashedCode, and handle mismatch explicitly
+    if (user.resetcode !== hashedCode) {
+      return res.status(400).json({ message: "Invalid verification code" });
+    }
+
+    // If we reach here, the code is correct and hasn't expired!
+    return res.status(200).json({ message: "Code verified successfully" });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Something went wrong" });
+  }
+};
 
 
+exports.resetpassword = async (req, res) => {
+  try{
+      const {email, code, password} = req.body 
+  }catch(erorr){
+    console.error("error");
+    return res.status(500).json({ message: "Something went wrong" });
+  }
 }
