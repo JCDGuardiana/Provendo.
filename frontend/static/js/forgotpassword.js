@@ -3,12 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
   
   //doms containing the sections and dots
   const section = document.querySelectorAll("section[data-step]");
-  const dots = document.querySelectorAll("#dot");
+  const dots = document.querySelectorAll("#dot span");
 
   //first step 
-  const forms = document.getElementById("forms");
+  const forms = document.getElementById("emailform");
   const email = document.getElementById("email");
-  const button = document.getElementById("submitBtn");
+  const button = document.getElementById("sendBTN");
 
   //second step 
   const codeError = document.getElementById("codeError");
@@ -24,6 +24,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
-
+  
 });

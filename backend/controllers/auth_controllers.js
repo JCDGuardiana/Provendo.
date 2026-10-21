@@ -205,12 +205,12 @@ exports.codeverify = async (req, res) => {
     }
 
     if (!user.resetcode || !user.resetcode_expiry) {
-      return res.status(400).json({ message: "No reset code found. Please request a new code." });
+      return res.status(400).json({ message: "No reset code found. Please request a new one." });
     }
 
     // Check if the code has expired first
     if (user.resetcode_expiry < new Date()) {
-      return res.status(400).json({ message: "Verification code expired, please request a new code" }); 
+      return res.status(400).json({ message: "Verification code expired, please request a new one" }); 
     }
 
     // Hash the incoming code
@@ -233,7 +233,41 @@ exports.codeverify = async (req, res) => {
 
 exports.resetpassword = async (req, res) => {
   try{
-      const {email, code, password} = req.body 
+      const {email, code, newpassword} = req.body 
+
+      if(!email || !code || !newpassword){
+        return res.status(400).json({message: "All fields are required"}); 
+      }
+    
+      const user = await User.findOne({where: {email}}); 
+      
+      if(!user.resetcode || !user.resetcode_expiry){
+        return res.status(400).json({message: "No reset code found, please request a new one"});
+      }
+
+      if(user.resetcode_expiry < new Date()){
+        return res.status(400).json({message : "Code already expired, please request a new one"}); 
+      }
+
+      const hashcode =  crypto.createHash("sha-256").update(code).digest("hex"); 
+
+      if(!user.resetcode !== hashcode){
+        return res.status(400).json({message: "Invalid code"}); 
+      }
+
+
+      const salt = 12; 
+      const hashpass = await bcrypt.hash(newpassword, salt); 
+
+      user.password = hashpass; 
+      user.resetcode = null; 
+      user.resetcode_expiry = null; 
+      await user.save(); 
+
+      return res.status(200).json({message: "Password reset successfully"})
+
+
+
   }catch(erorr){
     console.error("error");
     return res.status(500).json({ message: "Something went wrong" });
