@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  e.preventDefault()
 
   let currentCount = 1; 
   //first step 
@@ -8,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const codeError = document.getElementById("codeError");
   const codebox = document.querySelectorAll(".code-box")
   const codeform = document.getElementById("codeForm");
+  const backbtn = document.getElementById("backToEmail"); 
+  const resendbtn = document.getElementById("resend");
 
   //third step 
   const formpassword = document.getElementById("formpassword");
@@ -28,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
 
-
+ 
     const dots = document.querySelectorAll("#dots span")
     dots.forEach((dot, index) => {
 
@@ -43,8 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   steps(currentCount)
 
   forms.addEventListener("submit", async (e) => {
-     e.preventDefault(); 
-
+    e.preventDefault()
 
      const email = document.getElementById("email").value
      
@@ -62,10 +64,56 @@ document.addEventListener("DOMContentLoaded", () => {
         }else{
           return ("Something went wrong");
         }
-
-
      }catch(error){
       console.log(error)
      }
   })
+
+  codeform.addEventListener("submit", async (e) => {
+    e.preventDefault()
+
+    const fullcode = Array.from(codebox).map(box => box.value).join("")
+
+    if(fullcode.length !== 6){
+      codeError.textContent = "Invalid code"
+      codeError.classList.remove = "hidden";
+    }
+
+
+    codeError.classList.add = "hidden";
+
+    try{
+      const res = await fetch("http://localhost:3000/api/auth/codeverify", {
+          method: "POST", 
+          headers: {"Content-type" : "application/json"}, 
+          body: JSON.stringify({email, fullcode})
+      })
+
+      const data = await res.json();
+
+      if(data.ok){
+        currentCount = 3
+        steps(currentCount)
+      }else{ 
+        codeError.textContent = "Something Went Wrong"
+        codeError.classList.remove = "hidden"
+      }
+    }catch(error){
+      console.log(error)
+    }
+  })
 });
+
+
+
+resendbtn.addEventListener("click", async () => {
+  
+})
+
+
+backbtn.addEventListener("click", async () => {
+  currentCount = 1;
+  steps(currentCount);
+
+  codeError.classList.add("hidden");
+})
