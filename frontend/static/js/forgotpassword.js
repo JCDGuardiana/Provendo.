@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  e.preventDefault()
 
   let currentCount = 1; 
+  let userEmail = ""; 
   //first step 
   const forms = document.getElementById("emailform");
 
@@ -45,16 +45,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   steps(currentCount)
 
+  //step 1 
   forms.addEventListener("submit", async (e) => {
     e.preventDefault()
 
-     const email = document.getElementById("email").value
+     userEmail = document.getElementById("email").value.trim();
      
      try{
         const res = await fetch("http://localhost:3000/api/auth/forgotpassword", {
           method: "POST", 
           headers: {"Content-Type" : "application/json"}, 
-          body: JSON.stringify({email})
+          body: JSON.stringify({email: userEmail})
         })
 
         const data = await res.json();
@@ -69,6 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
      }
   })
 
+  //step2 
+
   codeform.addEventListener("submit", async (e) => {
     e.preventDefault()
 
@@ -76,17 +79,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if(fullcode.length !== 6){
       codeError.textContent = "Invalid code"
-      codeError.classList.remove = "hidden";
+      codeError.classList.remove("hidden");
+      return; 
     }
 
 
-    codeError.classList.add = "hidden";
+    codeError.classList.add("hidden");
 
     try{
       const res = await fetch("http://localhost:3000/api/auth/codeverify", {
           method: "POST", 
           headers: {"Content-type" : "application/json"}, 
-          body: JSON.stringify({email, fullcode})
+          body: JSON.stringify({ email: userEmail, code: fullcode})
       })
 
       const data = await res.json();
@@ -96,7 +100,8 @@ document.addEventListener("DOMContentLoaded", () => {
         steps(currentCount)
       }else{ 
         codeError.textContent = "Something Went Wrong"
-        codeError.classList.remove = "hidden"
+        codeError.classList.remove("hidden")
+        return; 
       }
     }catch(error){
       console.log(error)
@@ -104,10 +109,48 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 });
 
+//step 3 
+formpassword.addEventListener("click", async () => {
+  const password = pwd1.value; 
+  const confirmpassword = pwd2.value; 
+
+  if(!password || !confirmpassword){
+    codeError.textContent="Password and confirm password should not be empty"
+  }
+
+  if(password !== confirmpassword){
+    codeError.textContent = "Password does not match"
+    codeError.classList.remove("hidden");
+    return; 
+  }
+
+  if(password.length < 8 ) {
+    codeError.textContent = "Weak password"
+  }
+
+})
+
+
+
+
 
 
 resendbtn.addEventListener("click", async () => {
-  
+   const res = await fetch("http://localhost:3000/api/auth/forgotpassword", {
+    method: "POST", 
+    headers: {"Content-Type" : "application/json"}, 
+    body: JSON.stringify({email : userEmail})
+   })
+
+   const data = await res.json(); 
+
+   if(data.ok){
+     codeError.textContent = "A new code is sent to your email"
+     codeError.classList.remove("hidden")
+   }else{
+     codeError.textContent = "Error something went wrong"
+     codeError.classList.remove("hidden")
+   }
 })
 
 
