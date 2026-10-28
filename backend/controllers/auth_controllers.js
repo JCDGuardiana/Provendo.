@@ -138,7 +138,7 @@ exports.login = async(req, res) =>{
 }
 
 exports.forgotpassword = async (req, res) => {
-  const   {email} = req.body;
+  const {email} = req.body;
 
   //if all fields are empty
   if(!email){
@@ -172,19 +172,21 @@ exports.forgotpassword = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_HOST,
+        user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
       }
     })
 
     const mailOptions = {
-      from: process.env.EMAIL_HOST,
+      from: process.env.EMAIL_USER,
       to: email,
       subject: 'Password Reset Code',
       text: `Your password reset code is ${code}. It will expire in 2 minutes.`
     }; 
 
+
     await transporter.sendMail(mailOptions); 
+
 
     return res.status(200).json({message: "Reset code sent to email"});
 
@@ -251,7 +253,7 @@ exports.resetpassword = async (req, res) => {
 
       const hashcode =  crypto.createHash("sha-256").update(code).digest("hex"); 
 
-      if(!user.resetcode !== hashcode){
+      if(user.resetcode !== hashcode){
         return res.status(400).json({message: "Invalid code"}); 
       }
 
@@ -264,7 +266,7 @@ exports.resetpassword = async (req, res) => {
       user.resetcode_expiry = null; 
       await user.save(); 
 
-      return res.status(200).json({message: "Password reset successfully"})
+      return res.status(200).json({message: "Password reset successfully"});
 
 
 

@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentCount = 1; 
   let userEmail = ""; 
   //first step 
-  const forms = document.getElementById("emailform");
+  const forms = document.getElementById("emailForm");
 
   //second step 
   const codeError = document.getElementById("codeError");
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const resendbtn = document.getElementById("resend");
 
   //third step 
-  const formpassword = document.getElementById("formpassword");
+  const formpassword = document.getElementById("passwordForm");
   const pwd1 = document.getElementById("pw1");
   const pwd2 = document.getElementById("pw2");
   const pwdError = document.getElementById("pwdError");
@@ -59,12 +59,11 @@ document.addEventListener("DOMContentLoaded", () => {
         })
 
         const data = await res.json();
-        if(data.ok){
+        if(res.ok){
           currentCount = 2; 
           steps(currentCount);
-        }else{
-          return ("Something went wrong");
         }
+
      }catch(error){
       console.log(error)
      }
@@ -95,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const data = await res.json();
 
-      if(data.ok){
+      if(res.ok){
         currentCount = 3
         steps(currentCount)
       }else{ 
@@ -107,35 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(error)
     }
   })
-});
 
-//step 3 
-formpassword.addEventListener("click", async () => {
-  const password = pwd1.value; 
-  const confirmpassword = pwd2.value; 
-
-  if(!password || !confirmpassword){
-    codeError.textContent="Password and confirm password should not be empty"
-  }
-
-  if(password !== confirmpassword){
-    codeError.textContent = "Password does not match"
-    codeError.classList.remove("hidden");
-    return; 
-  }
-
-  if(password.length < 8 ) {
-    codeError.textContent = "Weak password"
-  }
-
-})
-
-
-
-
-
-
-resendbtn.addEventListener("click", async () => {
+  resendbtn.addEventListener("click", async () => {
    const res = await fetch("http://localhost:3000/api/auth/forgotpassword", {
     method: "POST", 
     headers: {"Content-Type" : "application/json"}, 
@@ -144,7 +116,7 @@ resendbtn.addEventListener("click", async () => {
 
    const data = await res.json(); 
 
-   if(data.ok){
+   if(res.ok){
      codeError.textContent = "A new code is sent to your email"
      codeError.classList.remove("hidden")
    }else{
@@ -160,3 +132,53 @@ backbtn.addEventListener("click", async () => {
 
   codeError.classList.add("hidden");
 })
+
+
+//step 3 
+formpassword.addEventListener("click", async () => {
+  const password = pwd1.value; 
+  const confirmpassword = pwd2.value; 
+
+  if(!password || !confirmpassword){
+    codeError.textContent="Password and confirm password should not be empty"
+    codeError.classlist.remove("hidden"); 
+    return; 
+  }
+
+  if(password !== confirmpassword){
+    pwdError.textContent = "Password does not match"
+    pwdError.classList.remove("hidden");
+    return; 
+  }
+
+  if(password.length < 8 ) {
+    pwdError.textContent = "Weak password strength"
+    pwdError.classList.remove("hidden");
+    return
+  }
+
+  if(password.length <= 10){
+    pwdError.textContent = "Medium password strength"
+    pwdError.classList.add("hidden");
+  }else{
+    pwdError.textContent = "Strong password strength"
+    pwdError.classList.add("hidden"); 
+  }
+
+  try{
+
+    const res = await fetch("http://localhost:3000/api/auth/resetpassword", {
+      method: "POST", 
+      headers: {"Content-Type" : "application/json"},
+      body: JSON.stringify({ email: userEmail ,code: fullcode, newpassword: password})
+    })
+
+    
+
+  }catch(error){
+
+  }
+})
+
+});
+
