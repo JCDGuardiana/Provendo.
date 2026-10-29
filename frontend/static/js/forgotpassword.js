@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentCount = 1; 
   let userEmail = ""; 
+  let fullcode = "";
   //first step 
   const forms = document.getElementById("emailForm");
 
@@ -74,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
   codeform.addEventListener("submit", async (e) => {
     e.preventDefault()
 
-    const fullcode = Array.from(codebox).map(box => box.value).join("")
+    fullcode = Array.from(codebox).map(box => box.value).join("")
 
     if(fullcode.length !== 6){
       codeError.textContent = "Invalid code"
@@ -135,50 +136,50 @@ backbtn.addEventListener("click", async () => {
 
 
 //step 3 
-formpassword.addEventListener("click", async () => {
-  const password = pwd1.value; 
-  const confirmpassword = pwd2.value; 
+formpassword.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-  if(!password || !confirmpassword){
-    codeError.textContent="Password and confirm password should not be empty"
-    codeError.classlist.remove("hidden"); 
-    return; 
-  }
+  const password = pwd1.value;
+  const confirmpassword = pwd2.value;
 
-  if(password !== confirmpassword){
-    pwdError.textContent = "Password does not match"
+  if (!password || !confirmpassword) {
+    pwdError.textContent = "Password and confirm password should not be empty";
     pwdError.classList.remove("hidden");
-    return; 
+    return;
   }
 
-  if(password.length < 8 ) {
-    pwdError.textContent = "Weak password strength"
+  if (password !== confirmpassword) {
+    pwdError.textContent = "Password does not match";
     pwdError.classList.remove("hidden");
-    return
+    return;
   }
 
-  if(password.length <= 10){
-    pwdError.textContent = "Medium password strength"
-    pwdError.classList.add("hidden");
-  }else{
-    pwdError.textContent = "Strong password strength"
-    pwdError.classList.add("hidden"); 
+  if (password.length < 8) {
+    pwdError.textContent = "Weak password strength";
+    pwdError.classList.remove("hidden");
+    return;
   }
 
-  try{
-
+  try {
     const res = await fetch("http://localhost:3000/api/auth/resetpassword", {
-      method: "POST", 
-      headers: {"Content-Type" : "application/json"},
-      body: JSON.stringify({ email: userEmail ,code: fullcode, newpassword: password})
-    })
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: userEmail, code: fullcode, newpassword: password }),
+    });
 
-    
-
-  }catch(error){
-
+    if (res.ok) {
+      window.location.href = "/login";
+    } else {
+      const data = await res.json();
+      pwdError.textContent = data.message;
+      pwdError.classList.remove("hidden");
+    }
+  } catch (error) {
+    console.log(error);
+    pwdError.textContent = "Could not reach the server";
+    pwdError.classList.remove("hidden");
   }
-})
+});
 
 });
 

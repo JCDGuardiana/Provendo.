@@ -14,7 +14,6 @@ document.getElementById("forms").addEventListener('submit', async (e) => {
     })
 
       const data = await res.json(); 
-      console.log("RESPONSE: ",data)
 
     if(res.ok){
       window.location.href = "/dashboard"

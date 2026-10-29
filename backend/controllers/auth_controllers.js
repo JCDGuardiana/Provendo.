@@ -251,7 +251,7 @@ exports.resetpassword = async (req, res) => {
         return res.status(400).json({message : "Code already expired, please request a new one"}); 
       }
 
-      const hashcode =  crypto.createHash("sha-256").update(code).digest("hex"); 
+      const hashcode =  crypto.createHash("sha256").update(code).digest("hex"); 
 
       if(user.resetcode !== hashcode){
         return res.status(400).json({message: "Invalid code"}); 
@@ -270,8 +270,8 @@ exports.resetpassword = async (req, res) => {
 
 
 
-  }catch(erorr){
-    console.error("error");
+  }catch(error){
+    console.error(error);
     return res.status(500).json({ message: "Something went wrong" });
   }
 }
