@@ -71,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   //step2 
-
   codeform.addEventListener("submit", async (e) => {
     e.preventDefault()
 
