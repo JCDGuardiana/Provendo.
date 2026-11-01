@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
-
+@source "../../../backend/views/**/*.ejs";
 @theme {
   --font-tilt-neon: "Tilt Neon", sans-serif;
   --font-tilt-warp: "Tilt Warp", sans-serif;
@@ -20,5 +20,6 @@
   /* Custom background colors using the --color- prefix */
   --color-bg-primary: #f8f9fd;
 }
+
 
 
