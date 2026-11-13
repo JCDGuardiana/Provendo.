@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="/assets/provendo_icon.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Boldonse&family=Fragment+Mono:ital@0;1&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Tilt+Neon&family=Tilt+Warp&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+      integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/output.css" />
+    <title>Stock Onhand</title>
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <div class="h-full flex">
+      <%- include("../partials/sidenavbar") %>
+      <div class="main-container flex-2">
+        <div class="h-15 p-5">
+          <h1 class="title-page">
+            Inventory / <b class="font-fragment-mono">Stock Onhand</b>
+          </h1>
+        </div>
+
+        <div class="main-content bg-gray-100 p-6">
+          <div
+            class="toolbar max-w-7xl mx-auto flex justify-between items-center gap-4 bg-bg-accent p-4 rounded-lg shadow-sm"
+          >
+            <div class="search-wrapper flex flex-col gap-2">
+              <label for="Search product" class="font-fragment-mono text-sm"
+                >Search product</label
+              >
+              <input
+                type="text"
+                placeholder="search product"
+                class="border rounded px-3 py-1.5"
+              />
+            </div>
+            <div class="add-button-wrapper">
+              <button
+                class="flex items-center gap-2 bg-blue-900 text-white px-4 py-2 rounded-lg font-medium"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+                <span>Add product</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/sidebar.js"></script>
+  </body>
+</html>
