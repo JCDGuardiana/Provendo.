@@ -19,11 +19,11 @@
     <link rel="stylesheet" href="/css/output.css" />
     <title>Stock Onhand</title>
   </head>
-  <body class="flex flex-col min-h-screen">
+  <body class="flex flex-col min-h-screen relative">
     <div class="h-full flex">
       <%- include("../partials/sidenavbar") %>
       <div class="main-container flex-2">
-        <div class="h-15 p-5">
+        <div class="h-15.5 p-5">
           <h1 class="title-page">
             Inventory / <b class="font-fragment-mono">Stock Onhand</b>
           </h1>
@@ -31,21 +31,25 @@
 
         <div class="main-content bg-gray-100 p-6">
           <div
-            class="toolbar max-w-7xl mx-auto flex justify-between items-center gap-4 bg-bg-accent p-4 rounded-lg shadow-sm"
+            class="toolbar max-w-7xl mx-auto flex justify-between items-center gap-4 bg-bg-accent p-5 rounded-lg shadow-sm border border-primary"
           >
-            <div class="search-wrapper flex flex-col gap-2">
-              <label for="Search product" class="font-fragment-mono text-sm"
+            <div class="search-wrapper flex flex-col gap-2 font-fragment-mono">
+              <label
+                for="Search product"
+                class="font-tilt-warp text-md tracking-widest text-primary"
                 >Search product</label
               >
               <input
+                id="search-product"
                 type="text"
-                placeholder="search product"
-                class="border rounded px-3 py-1.5"
+                placeholder="Search by code or name"
+                class="border border-primary rounded p-2.5 w-100 text-gray tracking-0"
               />
             </div>
             <div class="add-button-wrapper">
               <button
-                class="flex items-center gap-2 bg-blue-900 text-white px-4 py-2 rounded-lg font-medium"
+                class="flex items-center gap-2 bg-blue-900 text-white px-4 py-2 rounded-lg font-medium cursor-pointer font-fragment-mono"
+                id="add_button"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -63,6 +67,72 @@
                 </svg>
                 <span>Add product</span>
               </button>
+            </div>
+          </div>
+
+          <div
+            class="form-modal fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+            id="form-modal"
+          >
+            <div
+              class="form-wrapper flex flex-col w-200 p-4 h-150 bg-white rounded-md"
+            >
+              <div class="form-title flex justify-between p-4">
+                <h1 class="font-tilt-warp bold text-primary text-lg">
+                  Add product
+                </h1>
+                <button class="close-btn cursor-pointer" id="cls-btn">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-7"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6 18 18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <div class="add-product-form-container p-4 mt-5">
+                <form id="add-product-form" class="flex flex-col gap-5">
+                  <div class="input-container">
+                    <label for="product-name">Product name</label>
+                    <input type="text" id="product_name" />
+                  </div>
+
+                  <div class="input-container">
+                    <label for="product-name">Product code</label>
+                    <input type="text" id="product_code" />
+                  </div>
+                  <div class="input-container">
+                    <label for="product-name">Unit</label>
+                    <input type="text" id="unit" />
+                  </div>
+                  <div class="input-container">
+                    <label for="product-name">Stocks</label>
+                    <input type="text" id="stocks" />
+                  </div>
+                  <div class="input-container">
+                    <label for="product-name">Price</label>
+                    <input type="text" id="price" />
+                  </div>
+                  <div class="input-container">
+                    <label for="product-name">Reorder</label>
+                    <input type="text" id="reorder" />
+                  </div>
+
+                  <div class="button-container">
+                    <button type="click">Cancel</button>
+                    <button type="submit">Add</button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
