@@ -19,121 +19,221 @@
     <link rel="stylesheet" href="/css/output.css" />
     <title>Stock Onhand</title>
   </head>
-  <body class="flex flex-col min-h-screen relative">
-    <div class="h-full flex">
-      <%- include("../partials/sidenavbar") %>
-      <div class="main-container flex-2">
-        <div class="h-15.5 p-5">
-          <h1 class="title-page">
-            Inventory / <b class="font-fragment-mono">Stock Onhand</b>
-          </h1>
+  <body class="flex min-h-screen">
+    <%- include("../partials/sidenavbar") %>
+    <div class="main-container flex-1">
+      <div class="h-15.5 p-5">
+        <h1 class="title-page">
+          Inventory / <b class="font-fragment-mono">Stock Onhand</b>
+        </h1>
+      </div>
+
+      <div class="main-content bg-gray-100 p-6">
+        <div
+          class="toolbar max-w-7xl mx-auto flex justify-between items-center gap-4 bg-bg-accent p-5 rounded-lg shadow-sm border border-primary"
+        >
+          <div class="search-wrapper flex flex-col gap-2 font-fragment-mono">
+            <label
+              for="Search product"
+              class="font-tilt-warp text-md tracking-widest text-primary"
+              >Search by code or name</label
+            >
+            <input
+              id="search-product"
+              type="text"
+              placeholder="Search by code or name"
+              class="border border-primary rounded p-2.5 w-100 text-gray tracking-0"
+            />
+          </div>
+          <div class="add-button-wrapper">
+            <button
+              class="flex items-center gap-2 bg-blue-900 text-white px-4 py-2 rounded-lg font-medium cursor-pointer font-fragment-mono"
+              id="add_button"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 4.5v15m7.5-7.5h-15"
+                />
+              </svg>
+              <span>Add product</span>
+            </button>
+          </div>
         </div>
 
-        <div class="main-content bg-gray-100 p-6">
-          <div
-            class="toolbar max-w-7xl mx-auto flex justify-between items-center gap-4 bg-bg-accent p-5 rounded-lg shadow-sm border border-primary"
-          >
-            <div class="search-wrapper flex flex-col gap-2 font-fragment-mono">
-              <label
-                for="Search product"
-                class="font-tilt-warp text-md tracking-widest text-primary"
-                >Search product</label
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Product name</th>
+                <th>Product code</th>
+                <th>Unit</th>
+                <th>Stocks</th>
+                <th>Reorder level</th>
+                <th>Price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="px-4 py-3">1</td>
+                <td class="px-4 py-3 font-medium text-gray-900">
+                  Cooking Oil 1L
+                </td>
+                <td class="px-4 py-3">CO-001</td>
+                <td class="px-4 py-3">bottle</td>
+                <td class="px-4 py-3 text-right font-semibold">200</td>
+                <td class="px-4 py-3 text-right">20</td>
+                <td class="px-4 py-3 text-right">₱105.00</td>
+                <td class="px-4 py-3 text-right">
+                  <div class="button-container">
+                    <button
+                      type="button"
+                      class="rounded border border-gray-300 px-3 py-1 text-xs hover:bg-gray-50"
+                    >
+                      Edit
+                    </button>
+
+                    <button type="submit" class="">delete</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="errorMsg"></div>
+      </div>
+
+      <div
+        class="form-modal hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 text-accent-text"
+        id="form-modal"
+      >
+        <div
+          class="form-wrapper flex h-150 max-h-full w-200 max-w-full flex-col rounded-md bg-white p-4"
+        >
+          <div class="form-title flex items-center justify-between p-4">
+            <h1 class="font-tilt-warp text-lg text-primary">Add product</h1>
+            <button
+              type="button"
+              class="close-btn cursor-pointer"
+              id="cls-btn"
+              aria-label="Close"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-7"
               >
-              <input
-                id="search-product"
-                type="text"
-                placeholder="Search by code or name"
-                class="border border-primary rounded p-2.5 w-100 text-gray tracking-0"
-              />
-            </div>
-            <div class="add-button-wrapper">
-              <button
-                class="flex items-center gap-2 bg-blue-900 text-white px-4 py-2 rounded-lg font-medium cursor-pointer font-fragment-mono"
-                id="add_button"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="size-6"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M12 4.5v15m7.5-7.5h-15"
-                  />
-                </svg>
-                <span>Add product</span>
-              </button>
-            </div>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
           </div>
 
-          <div
-            class="form-modal fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
-            id="form-modal"
-          >
-            <div
-              class="form-wrapper flex flex-col w-200 p-4 h-150 bg-white rounded-md"
-            >
-              <div class="form-title flex justify-between p-4">
-                <h1 class="font-tilt-warp bold text-primary text-lg">
-                  Add product
-                </h1>
-                <button class="close-btn cursor-pointer" id="cls-btn">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="size-7"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M6 18 18 6M6 6l12 12"
-                    />
-                  </svg>
+          <div class="add-product-form-container min-h-0 flex-1 p-4">
+            <form id="add-product-form" class="flex h-full flex-col gap-5">
+              <div class="grid grid-cols-2 gap-5">
+                <div class="input-container flex flex-col gap-1">
+                  <label for="product_name">Product name</label>
+                  <input
+                    type="text"
+                    id="product_name"
+                    name="product_name"
+                    class="rounded-md border border-gray-300 px-3 py-2"
+                  />
+                </div>
+                <div class="input-container flex flex-col gap-1">
+                  <label for="product_code">Product code</label>
+                  <input
+                    type="text"
+                    id="product_code"
+                    name="product_code"
+                    class="rounded-md border border-gray-300 px-3 py-2"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-5">
+                <div class="input-container flex flex-col gap-1">
+                  <label for="unit">Unit</label>
+                  <input
+                    type="text"
+                    id="unit"
+                    name="product_unit"
+                    class="rounded-md border border-gray-300 px-3 py-2"
+                  />
+                </div>
+                <div class="input-container flex flex-col gap-1">
+                  <label for="stocks">Stocks</label>
+                  <input
+                    type="number"
+                    id="stocks"
+                    name="stocks"
+                    min="0"
+                    class="rounded-md border border-gray-300 px-3 py-2"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-5">
+                <div class="input-container flex flex-col gap-1">
+                  <label for="price">Price</label>
+                  <input
+                    type="number"
+                    id="price"
+                    name="product_selling_price"
+                    min="0"
+                    step="0.01"
+                    class="rounded-md border border-gray-300 px-3 py-2"
+                  />
+                </div>
+                <div class="input-container flex flex-col gap-1">
+                  <label for="reorder">Reorder level</label>
+                  <input
+                    type="number"
+                    id="reorder"
+                    name="product_reorder_level"
+                    min="0"
+                    class="rounded-md border border-gray-300 px-3 py-2"
+                  />
+                </div>
+              </div>
+
+              <div
+                class="button-container mt-auto flex justify-end gap-3 border-t border-gray-200 pt-4"
+              >
+                <button
+                  type="button"
+                  id="cancel-btn"
+                  class="rounded-md border border-gray-300 px-5 py-2 hover:bg-gray-50"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  class="rounded-md bg-primary px-5 py-2 font-medium text-white hover:opacity-90"
+                >
+                  Add
                 </button>
               </div>
+            </form>
 
-              <div class="add-product-form-container p-4 mt-5">
-                <form id="add-product-form" class="flex flex-col gap-5">
-                  <div class="input-container">
-                    <label for="product-name">Product name</label>
-                    <input type="text" id="product_name" />
-                  </div>
-
-                  <div class="input-container">
-                    <label for="product-name">Product code</label>
-                    <input type="text" id="product_code" />
-                  </div>
-                  <div class="input-container">
-                    <label for="product-name">Unit</label>
-                    <input type="text" id="unit" />
-                  </div>
-                  <div class="input-container">
-                    <label for="product-name">Stocks</label>
-                    <input type="text" id="stocks" />
-                  </div>
-                  <div class="input-container">
-                    <label for="product-name">Price</label>
-                    <input type="text" id="price" />
-                  </div>
-                  <div class="input-container">
-                    <label for="product-name">Reorder</label>
-                    <input type="text" id="reorder" />
-                  </div>
-
-                  <div class="button-container">
-                    <button type="click">Cancel</button>
-                    <button type="submit">Add</button>
-                  </div>
-                </form>
-              </div>
-            </div>
+            <div class="modal-error-msg"></div>
           </div>
         </div>
       </div>
