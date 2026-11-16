@@ -7,7 +7,7 @@ const product = require("./models/product");
 const port = process.env.PORT; 
 
 user.hasMany(product, {foreignKey : "userId"});
-product.belongsTo(user, {foreignKey : "userId"})
+product.belongsTo(user, {foreignKey : "userId"});
 
 
 

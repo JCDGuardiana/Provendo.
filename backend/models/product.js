@@ -4,13 +4,6 @@ const sequelize = require('../config/db_con');
 const product = sequelize.define(
   'product',
   {
-    product_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      unique:true,
-      allowNull: false
-    }, 
     product_name:{
       type: DataTypes.STRING,
       allowNull: false
