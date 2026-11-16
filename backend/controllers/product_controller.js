@@ -1,9 +1,10 @@
-const productModel = require("../models/product"); 
-
+const express = require("express")
+const router = express.router;
+const productController = require("../controllers/product_controller")
 exports.stock_entry = async (req, res) => {
   try {
     return res.render("inventory/stock_entry", {
-      title: "Stock Entry",
+      title: "Stock entry",
     });
   }catch (error) {
     console.error("Error rendering stock entry page:", error);
@@ -22,3 +23,9 @@ exports.stock_onhand = async (req, res) => {
     return res.status(500).send("Internal Server Error");
   }
 }
+
+exports.add_product = async (req, res) => {
+  
+}
+
+

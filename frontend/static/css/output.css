@@ -242,9 +242,6 @@
   .inset-0 {
     inset: 0px;
   }
-  .top-1 {
-    top: var(--spacing);
-  }
   .top-1\/2 {
     top: calc(1 / 2 * 100%);
   }
@@ -326,9 +323,6 @@
   .hidden {
     display: none;
   }
-  .table {
-    display: table;
-  }
   .size-5 {
     width: calc(var(--spacing) * 5);
     height: calc(var(--spacing) * 5);
@@ -363,9 +357,6 @@
   }
   .h-12 {
     height: calc(var(--spacing) * 12);
-  }
-  .h-15 {
-    height: calc(var(--spacing) * 15);
   }
   .h-15\.5 {
     height: calc(var(--spacing) * 15.5);
@@ -415,9 +406,6 @@
   .w-200 {
     width: calc(var(--spacing) * 200);
   }
-  .w-auto {
-    width: auto;
-  }
   .w-full {
     width: 100%;
   }
@@ -445,27 +433,24 @@
   .table-auto {
     table-layout: auto;
   }
-  .table-fixed {
-    table-layout: fixed;
-  }
-  .border-collapse {
-    border-collapse: collapse;
-  }
   .border-separate {
     border-collapse: separate;
   }
-  .-translate-1 {
-    --tw-translate-x: calc(var(--spacing) * -1);
-    --tw-translate-y: calc(var(--spacing) * -1);
-    translate: var(--tw-translate-x) var(--tw-translate-y);
+  .border-spacing-x-1 {
+    --tw-border-spacing-x: var(--spacing);
+    border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);
+  }
+  .border-spacing-y-1 {
+    --tw-border-spacing-y: var(--spacing);
+    border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);
+  }
+  .border-spacing-y-4 {
+    --tw-border-spacing-y: calc(var(--spacing) * 4);
+    border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);
   }
   .-translate-1\/2 {
     --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
     --tw-translate-y: calc(calc(1 / 2 * 100%) * -1);
-    translate: var(--tw-translate-x) var(--tw-translate-y);
-  }
-  .-translate-y-1 {
-    --tw-translate-y: calc(var(--spacing) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .-translate-y-1\/2 {
@@ -477,9 +462,6 @@
   }
   .cursor-pointer {
     cursor: pointer;
-  }
-  .resize {
-    resize: both;
   }
   .grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -608,9 +590,6 @@
   .bg-bg-accent {
     background-color: var(--color-bg-accent);
   }
-  .bg-black {
-    background-color: var(--color-black);
-  }
   .bg-black\/70 {
     background-color: color-mix(in srgb, #000 70%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
@@ -622,9 +601,6 @@
   }
   .bg-blue-900 {
     background-color: var(--color-blue-900);
-  }
-  .bg-gray-100 {
-    background-color: var(--color-gray-100);
   }
   .bg-gray-300 {
     background-color: var(--color-gray-300);
@@ -686,9 +662,6 @@
   .px-6 {
     padding-inline: calc(var(--spacing) * 6);
   }
-  .py-1 {
-    padding-block: var(--spacing);
-  }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
   }
@@ -700,9 +673,6 @@
   }
   .py-6 {
     padding-block: calc(var(--spacing) * 6);
-  }
-  .pt-3 {
-    padding-top: calc(var(--spacing) * 3);
   }
   .pt-4 {
     padding-top: calc(var(--spacing) * 4);
@@ -724,9 +694,6 @@
   }
   .text-center {
     text-align: center;
-  }
-  .text-right {
-    text-align: right;
   }
   .text-start {
     text-align: start;
@@ -798,9 +765,6 @@
   .text-gray-600 {
     color: var(--color-gray-600);
   }
-  .text-gray-900 {
-    color: var(--color-gray-900);
-  }
   .text-primary {
     color: var(--color-primary);
   }
@@ -847,9 +811,6 @@
     --tw-drop-shadow: drop-shadow(var(--drop-shadow-lg));
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
-  .filter {
-    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
-  }
   .transition-all {
     transition-property: all;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
@@ -890,18 +851,6 @@
   }
   .peer-checked\:opacity-100:is(:where(.peer):checked ~ *) {
     opacity: 100%;
-  }
-  .odd\:bg-gray-100:nth-child(odd) {
-    background-color: var(--color-gray-100);
-  }
-  .odd\:bg-primary:nth-child(odd) {
-    background-color: var(--color-primary);
-  }
-  .even\:bg-gray-100:nth-child(even) {
-    background-color: var(--color-gray-100);
-  }
-  .even\:bg-primary:nth-child(even) {
-    background-color: var(--color-primary);
   }
   @media (hover: hover) {
     .hover\:bg-gray-50:hover {
@@ -980,18 +929,6 @@
   .\[\&_th\:nth-child\(even\)\]\:bg-gray-100 th:nth-child(even) {
     background-color: var(--color-gray-100);
   }
-  .\[\&_th\:nth-child\(even\)\]\:bg-white th:nth-child(even) {
-    background-color: var(--color-white);
-  }
-  .\[\&_th\:nth-child\(even\)\]\:text-primary th:nth-child(even) {
-    color: var(--color-primary);
-  }
-  .\[\&_th\:nth-child\(odd\)\]\:bg-gray-100 th:nth-child(odd) {
-    background-color: var(--color-gray-100);
-  }
-  .\[\&_th\:nth-child\(odd\)\]\:bg-gray-600 th:nth-child(odd) {
-    background-color: var(--color-gray-600);
-  }
   .\[\&_th\:nth-child\(odd\)\]\:bg-primary th:nth-child(odd) {
     background-color: var(--color-primary);
   }
@@ -1004,14 +941,33 @@
   .\[\&_tr\:nth-child\(even\)\]\:text-primary tr:nth-child(even) {
     color: var(--color-primary);
   }
+  .\[\&_tr\:nth-child\(odd\)\]\:bg-gray-300 tr:nth-child(odd) {
+    background-color: var(--color-gray-300);
+  }
+  .\[\&_tr\:nth-child\(odd\)\]\:bg-gray-400 tr:nth-child(odd) {
+    background-color: var(--color-gray-400);
+  }
   .\[\&_tr\:nth-child\(odd\)\]\:bg-gray-600 tr:nth-child(odd) {
     background-color: var(--color-gray-600);
+  }
+  .\[\&_tr\:nth-child\(odd\)\]\:text-black tr:nth-child(odd) {
+    color: var(--color-black);
   }
   .\[\&_tr\:nth-child\(odd\)\]\:text-white tr:nth-child(odd) {
     color: var(--color-white);
   }
 }
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
+@property --tw-border-spacing-x {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-border-spacing-y {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0;
+}
 @property --tw-translate-x {
   syntax: "*";
   inherits: false;
@@ -1199,6 +1155,8 @@
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
+      --tw-border-spacing-x: 0;
+      --tw-border-spacing-y: 0;
       --tw-translate-x: 0;
       --tw-translate-y: 0;
       --tw-translate-z: 0;

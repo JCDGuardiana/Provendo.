@@ -8,6 +8,7 @@ const product = sequelize.define(
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+      unique:true,
       allowNull: false
     }, 
     product_name:{
@@ -43,7 +44,6 @@ const product = sequelize.define(
       type:DataTypes.STRING, 
       allowNull: false  
     }
-  }
-)
+  });
 
 module.exports = product;

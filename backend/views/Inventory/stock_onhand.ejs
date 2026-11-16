@@ -72,7 +72,9 @@
         <div
           class="table-wrapper p-4 bg-white rounded-lg mt-6 border border-primary drop-shadow-lg"
         >
-          <table class="table-auto md:table-fixed w-full text-center">
+          <table
+            class="table-auto md:table-fixed w-full text-center border-separate border-spacing-y-4"
+          >
             <thead
               class="uppercase p-4 [&_th:nth-child(odd)]:bg-primary [&_th:nth-child(odd)]:text-white [&_th:nth-child(even)]:bg-gray-100 font-fragment-mono"
             >
@@ -88,7 +90,7 @@
               </tr>
             </thead>
             <tbody
-              class="font-fragment-mono text-sm text-center [&_tr:nth-child(odd)]:bg-gray-600 [&_tr:nth-child(odd)]:text-white [&_tr:nth-child(even)]:bg-white [&_tr:nth-child(even)]:text-primary"
+              class="font-fragment-mono text-sm text-center [&_tr:nth-child(odd)]:bg-gray-300 [&_tr:nth-child(odd)]:text-black [&_tr:nth-child(even)]:bg-white [&_tr:nth-child(even)]:text-primary"
             >
               <tr>
                 <td class="p-4">1</td>
@@ -184,7 +186,12 @@
           </div>
 
           <div class="add-product-form-container min-h-0 flex-1 p-4">
-            <form id="add-product-form" class="flex h-full flex-col gap-5">
+            <form
+              id="add-product-form"
+              caction="/inventory/add_product"
+              method="POST"
+              lass="flex h-full flex-col gap-5"
+            >
               <div class="grid grid-cols-2 gap-5">
                 <div class="input-container flex flex-col gap-1">
                   <label for="product_name">Product name</label>
@@ -234,7 +241,7 @@
                   <input
                     type="number"
                     id="price"
-                    name="product_selling_price"
+                    name="product_price"
                     min="0"
                     step="0.01"
                     class="rounded-md border border-gray-300 px-3 py-2"
