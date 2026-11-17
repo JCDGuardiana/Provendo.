@@ -7,20 +7,24 @@ const add_product_form = document.getElementById("add-product-form");
 let count = 0; 
 
 
+
+add_product_form.addEventListener('submit', (e) => {
+  const product_name = document.getElementById("product_name").value.trim();
+  const product_code = document.getElementById("product_code").value.trim(); 
+  const unit = document.getElementById("unit").value.trim(); 
+  const stock = document.getElementById("stocks").value.trim(); 
+  const price = document.getElementById("price").value.trim(); 
+    const stock_level = document.getElementById("reorder").value.trim();
+
+
+
+})
+
 openbtn.addEventListener('click' ,(e) => {
      e.preventDefault(); 
 
     modal.classList.toggle("hidden"); 
 })
-
-add_product_form.addEventListener('submit', (e) => {
-    const product_name = document.getElementById("product_name").value.trim();
-    const product_code = document.getElementById("product_code").value.trim(); 
-    const
-})
-
-
-
 
 closebtn.addEventListener("click", clsModal); 
 cancelbtn.addEventListener("click", clsModal); 
