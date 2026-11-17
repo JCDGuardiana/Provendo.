@@ -188,9 +188,9 @@
           <div class="add-product-form-container min-h-0 flex-1 p-4">
             <form
               id="add-product-form"
-              caction="/inventory/add_product"
+              action="/inventory/add_product"
               method="POST"
-              lass="flex h-full flex-col gap-5"
+              class="flex h-full flex-col gap-5"
             >
               <div class="grid grid-cols-2 gap-5">
                 <div class="input-container flex flex-col gap-1">
@@ -265,7 +265,7 @@
                 <button
                   type="button"
                   id="cancel-btn"
-                  class="rounded-md border border-gray-300 px-5 py-2 hover:bg-gray-50"
+                  class="rounded-md border border-gray-300 px-5 py-2 hover:bg-gray-50 cursor-pointer"
                 >
                   Cancel
                 </button>
@@ -285,6 +285,7 @@
       </div>
     </div>
 
+    <script src="/js/modal.js"></script>
     <script src="/js/sidebar.js"></script>
   </body>
 </html>

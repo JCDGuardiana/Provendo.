@@ -25,7 +25,7 @@ exports.stock_onhand = async (req, res) => {
 }
 
 exports.add_product = async (req, res) => {
-  
+    
 }
 
 
