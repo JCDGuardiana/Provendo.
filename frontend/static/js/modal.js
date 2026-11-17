@@ -14,9 +14,13 @@ add_product_form.addEventListener('submit', (e) => {
   const unit = document.getElementById("unit").value.trim(); 
   const stock = document.getElementById("stocks").value.trim(); 
   const price = document.getElementById("price").value.trim(); 
-    const stock_level = document.getElementById("reorder").value.trim();
+  const stock_level = document.getElementById("reorder").value.trim();
 
+  try{
 
+  }catch(error){
+    console.error(error)
+  }
 
 })
 
