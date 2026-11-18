@@ -15,7 +15,6 @@ document.getElementById("forms").addEventListener('submit', async(e) => {
       });
 
       const data = await response.json()
-      console.log(data);
       if(response.ok){
         localStorage.setItem("token", data.token);
         localStorage.setItem("username", username);

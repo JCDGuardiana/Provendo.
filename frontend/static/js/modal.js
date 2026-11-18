@@ -15,14 +15,15 @@ add_product_form.addEventListener('submit', (e) => {
   const stock = document.getElementById("stocks").value.trim(); 
   const price = document.getElementById("price").value.trim(); 
   const stock_level = document.getElementById("reorder").value.trim();
-
+    count++; 
   try{
-
+      
   }catch(error){
     console.error(error)
   }
 
 })
+
 
 openbtn.addEventListener('click' ,(e) => {
      e.preventDefault(); 
