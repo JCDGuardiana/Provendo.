@@ -1,5 +1,3 @@
-const express = require("express");
-const router = express.router;
 const product = require("../models/product");
 const productController = require("../controllers/product_controller");
 
@@ -19,7 +17,8 @@ exports.stock_onhand = async (req, res) => {
   try{
     return res.render("inventory/stock_onhand", {
       title: "Stock onHand"
-    })
+    }) 
+    
   }catch(error){
     console.error("Error rendering stock onhand page", error);
     return res.status(500).send("Internal Server Error");
@@ -36,11 +35,17 @@ exports.add_product = async (req, res) => {
     try{
     const newProduct = await product.create({
       product_name,
-
+      product_code, 
+      unit,
+      stock,
+      price,
+      stock_level
     })
 
+    return res.status(201).json({message : "Product added successfully", Product: newProduct.id })
     }catch(error){
-
+      console.log("Error : ", error); 
+      return res.status(500).json({message : "Something went wrong"});
     }
 
     
