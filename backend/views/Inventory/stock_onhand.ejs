@@ -93,14 +93,15 @@
               class="font-fragment-mono text-sm text-center [&_tr:nth-child(odd)]:bg-gray-300 [&_tr:nth-child(odd)]:text-black [&_tr:nth-child(even)]:bg-white [&_tr:nth-child(even)]:text-primary"
             >
               <% let count = 1 %>
+              <% product.forEach(p => { %>
               <tr>
-                <td class="p-4"></td>
-                <td class="p-4"></td>
-                <td class="p-4"></td>
-                <td class="p-4"></td>
-                <td class="p-4"></td>
-                <td class="p-4"></td>
-                <td class="p-4">₱</td>
+                <td class="p-4"><%= count++; %></td>
+                <td class="p-4"><%= p.product_name %></td>
+                <td class="p-4"><%= p.product_code %></td>
+                <td class="p-4"><%= p.unit%></td>
+                <td class="p-4"><%= p.stocks%></td>
+                <td class="p-4"><%= p.stock_level %></td>
+                <td class="p-4">₱<= p.price %></td>
                 <td class="p-4">
                   <div class="button-container">
                     <button
@@ -147,6 +148,7 @@
                   </div>
                 </td>
               </tr>
+              <% }) %>
             </tbody>
           </table>
         </div>
