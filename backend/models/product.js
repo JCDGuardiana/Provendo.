@@ -35,7 +35,15 @@ const product = sequelize.define(
     },
     product_status:{
       type:DataTypes.STRING, 
-      allowNull: false  
+      allowNull: true
+    },
+    stock_level:{
+      type:DataTypes.INTEGER, 
+      allowNull: true
+    },
+    stock:{
+      type:DataTypes.INTEGER, 
+      allowNull: true
     }
   });
 

@@ -70,13 +70,13 @@
         </div>
 
         <div
-          class="table-wrapper p-4 bg-white rounded-lg mt-6 border border-primary drop-shadow-lg"
+          class="table-wrapper p-4 bg-white rounded-lg mt-6 border border-primary drop-shadow-lg max-h-[60vh] overflow-y-auto"
         >
           <table
             class="table-auto md:table-fixed w-full text-center border-separate border-spacing-y-4"
           >
             <thead
-              class="uppercase p-4 [&_th:nth-child(odd)]:bg-primary [&_th:nth-child(odd)]:text-white [&_th:nth-child(even)]:bg-gray-100 font-fragment-mono"
+              class="uppercase p-2 [&_th:nth-child(odd)]:bg-primary [&_th:nth-child(odd)]:text-white [&_th:nth-child(even)]:bg-gray-100 font-fragment-mono text-sm"
             >
               <tr>
                 <th class="p-2">Id</th>
@@ -84,8 +84,9 @@
                 <th class="p-2">Product code</th>
                 <th class="p-2">Unit</th>
                 <th class="p-2">Stocks</th>
-                <th class="p-2">Reorder level</th>
+                <th class="p-2">Cost price</th>
                 <th class="p-2">Price</th>
+                <th class="p-2">Reorder level</th>
                 <th class="p-2">Actions</th>
               </tr>
             </thead>
@@ -93,15 +94,16 @@
               class="font-fragment-mono text-sm text-center [&_tr:nth-child(odd)]:bg-gray-300 [&_tr:nth-child(odd)]:text-black [&_tr:nth-child(even)]:bg-white [&_tr:nth-child(even)]:text-primary"
             >
               <% let count = 1 %>
-              <% product.forEach(p => { %>
+              <% newProduct.forEach(p => { %>
               <tr>
-                <td class="p-4"><%= count++; %></td>
+                <td class="p-4"><%= count++ %></td>
                 <td class="p-4"><%= p.product_name %></td>
                 <td class="p-4"><%= p.product_code %></td>
-                <td class="p-4"><%= p.unit%></td>
-                <td class="p-4"><%= p.stocks%></td>
+                <td class="p-4"><%= p.product_unit%></td>
+                <td class="p-4"><%= p.stock%></td>
+                <td class="p-4"><%= p.product_cost_price %></td>
+                <td class="p-4">₱<%= p.product_selling_price %></td>
                 <td class="p-4"><%= p.stock_level %></td>
-                <td class="p-4">₱<= p.price %></td>
                 <td class="p-4">
                   <div class="button-container">
                     <button
@@ -190,97 +192,111 @@
           </div>
 
           <div class="add-product-form-container min-h-0 flex-1 p-4">
-            <form
-              id="add-product-form"
-              action="/inventory/add_product"
-              method="POST"
-              class="flex h-full flex-col gap-5"
-            >
-              <div class="grid grid-cols-2 gap-5">
-                <div class="input-container flex flex-col gap-1">
-                  <label for="product_name">Product name</label>
-                  <input
-                    type="text"
-                    id="product_name"
-                    name="product_name"
-                    class="rounded-md border border-gray-300 px-3 py-2"
-                  />
-                </div>
-                <div class="input-container flex flex-col gap-1">
-                  <label for="product_code">Product code</label>
-                  <input
-                    type="text"
-                    id="product_code"
-                    name="product_code"
-                    class="rounded-md border border-gray-300 px-3 py-2"
-                  />
-                </div>
-              </div>
+<form
+  id="add-product-form"
+  action="/inventory/add_product"
+  method="POST"
+  class="flex h-full flex-col gap-5"
+>
+  <div class="grid grid-cols-2 gap-5">
+    <div class="input-container flex flex-col gap-1">
+      <label for="product_name">Product name</label>
+      <input
+        type="text"
+        id="product_name"
+        name="product_name"
+        class="rounded-md border border-gray-300 px-3 py-2"
+      />
+    </div>
+    <div class="input-container flex flex-col gap-1">
+      <label for="product_code">Product code</label>
+      <input
+        type="text"
+        id="product_code"
+        name="product_code"
+        class="rounded-md border border-gray-300 px-3 py-2"
+      />
+    </div>
+  </div>
 
-              <div class="grid grid-cols-2 gap-5">
-                <div class="input-container flex flex-col gap-1">
-                  <label for="unit">Unit</label>
-                  <input
-                    type="text"
-                    id="unit"
-                    name="product_unit"
-                    class="rounded-md border border-gray-300 px-3 py-2"
-                  />
-                </div>
-                <div class="input-container flex flex-col gap-1">
-                  <label for="stocks">Stocks</label>
-                  <input
-                    type="number"
-                    id="stocks"
-                    name="stocks"
-                    min="0"
-                    class="rounded-md border border-gray-300 px-3 py-2"
-                  />
-                </div>
-              </div>
+  <div class="grid grid-cols-2 gap-5">
+    <div class="input-container flex flex-col gap-1">
+      <label for="unit">Unit</label>
+      <input
+        type="text"
+        id="unit"
+        name="product_unit"
+        class="rounded-md border border-gray-300 px-3 py-2"
+      />
+    </div>
+    <div class="input-container flex flex-col gap-1">
+      <label for="stocks">Stocks</label>
+      <input
+        type="number"
+        id="stocks"
+        name="stocks"
+        min="0"
+        class="rounded-md border border-gray-300 px-3 py-2"
+      />
+    </div>
+  </div>
 
-              <div class="grid grid-cols-2 gap-5">
-                <div class="input-container flex flex-col gap-1">
-                  <label for="price">Price</label>
-                  <input
-                    type="number"
-                    id="price"
-                    name="product_price"
-                    min="0"
-                    step="0.01"
-                    class="rounded-md border border-gray-300 px-3 py-2"
-                  />
-                </div>
-                <div class="input-container flex flex-col gap-1">
-                  <label for="reorder">Reorder level</label>
-                  <input
-                    type="number"
-                    id="reorder"
-                    name="product_reorder_level"
-                    min="0"
-                    class="rounded-md border border-gray-300 px-3 py-2"
-                  />
-                </div>
-              </div>
+  <div class="grid grid-cols-2 gap-5">
+    <div class="input-container flex flex-col gap-1">
+      <label for="cost_price">Product cost price</label>
+      <input
+        type="number"
+        id="product_cost_price"
+        name="product_cost_price"
+        min="0"
+        step="0.01"
+        class="rounded-md border border-gray-300 px-3 py-2"
+      />
+    </div>
+    <div class="input-container flex flex-col gap-1">
+      <label for="price">Selling price</label>
+      <input
+        type="number"
+        id="price"
+        name="product_price"
+        min="0"
+        step="0.01"
+        class="rounded-md border border-gray-300 px-3 py-2"
+      />
+    </div>
+  </div>
 
-              <div
-                class="button-container mt-auto flex justify-end gap-3 border-t border-gray-200 pt-4"
-              >
-                <button
-                  type="button"
-                  id="cancel-btn"
-                  class="rounded-md border border-gray-300 px-5 py-2 hover:bg-gray-50 cursor-pointer"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  class="rounded-md bg-primary px-5 py-2 font-medium text-white hover:opacity-90"
-                >
-                  Add
-                </button>
-              </div>
-            </form>
+  <div class="grid grid-cols-2 gap-5">
+    <div class="input-container flex flex-col gap-1">
+      <label for="reorder">Reorder level</label>
+      <input
+        type="number"
+        id="reorder"
+        name="product_reorder_level"
+        min="0"
+        class="rounded-md border border-gray-300 px-3 py-2"
+      />
+    </div>
+  </div>
+
+  <div
+    class="button-container mt-auto flex justify-end gap-3 border-t border-gray-200 pt-4"
+  >
+    <button
+      type="button"
+      id="cancel-btn"
+      class="rounded-md border border-gray-300 px-5 py-2 hover:bg-gray-50 cursor-pointer"
+    >
+      Cancel
+    </button>
+    <button
+      type="submit"
+      class="rounded-md bg-primary px-5 py-2 font-medium text-white hover:opacity-90"
+    >
+      Add
+    </button>
+  </div>
+</form>
 
             <div class="modal-error-msg"></div>
             <div class="modal-success-msg"></div>

@@ -15,8 +15,14 @@ exports.stock_entry = async (req, res) => {
 
 exports.stock_onhand = async (req, res) => {
   try{
+
+    const newProduct = await product.findAll({
+      order:[["id"]],
+      raw: true
+    })
+
     return res.render("inventory/stock_onhand", {
-      title: "Stock onHand"
+      title: "Stock onHand", newProduct
     }) 
     
   }catch(error){
@@ -26,29 +32,33 @@ exports.stock_onhand = async (req, res) => {
 }
 
 exports.add_product = async (req, res) => {
-    const {product_name, product_code, unit, stock, price, stock_level} = req.body
+  const { product_name, product_code, unit, stock, cost_price, price, stock_level } = req.body;
 
-    if(!product_name || !product_code || !unit || stock === undefined || price === undefined || !stock_level){
-      return res.status("400").send("All fields must fill up");
-    }
+  const empty = (v) => v === undefined || v === null || v === "";
 
-    try{
+  if (!product_name || !product_code || !unit ||
+      empty(stock) || empty(cost_price) || empty(price) || empty(stock_level)) {
+    return res.status(400).json({ message: "All fields must fill up" });
+  }
+
+  try {
     const newProduct = await product.create({
       product_name,
-      product_code, 
-      unit,
+      product_code,
+      product_unit: unit,
+      product_cost_price: cost_price,
+      product_selling_price: price,
       stock,
-      price,
-      stock_level
-    })
+      stock_level,
+    });
 
-    return res.status(201).json({message : "Product added successfully", Product: newProduct.id })
-    }catch(error){
-      console.log("Error : ", error); 
-      return res.status(500).json({message : "Something went wrong"});
+    return res.status(201).json({ message: "Product added successfully", product: newProduct });
+  } catch (error) {
+    if (error.name === "SequelizeUniqueConstraintError") {
+      return res.status(409).json({ message: "Product code already exists" });
     }
-
-    
-}
-
+    console.log("Error : ", error);
+    return res.status(500).json({ message: "Something went wrong" });
+  }
+};
 
