@@ -15,14 +15,8 @@ exports.stock_entry = async (req, res) => {
 
 exports.stock_onhand = async (req, res) => {
   try{
-
-    const newProduct = await product.findAll({
-      order:[["id"]],
-      raw: true
-    })
-
     return res.render("inventory/stock_onhand", {
-      title: "Stock onHand", newProduct
+      title: "Stock onHand"
     }) 
     
   }catch(error){
@@ -62,3 +56,15 @@ exports.add_product = async (req, res) => {
   }
 };
 
+exports.get_product = async (req, res) => {
+  try{
+      const newProduct = await product.findAll({
+      order:[["id"]],
+      raw: true
+    })
+
+    return res.status(200).json({ newProduct })
+  }catch(error){
+    console.log(error)
+  }
+}
