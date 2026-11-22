@@ -218,4 +218,18 @@ function update_row(p){
   row.children[7].textContent = p.stock_level;
 }
 
+const deleteProduct = async (id, row) => {
+  if(!confirm("Delete this product??")) return; 
+
+  try{
+    const res = await fetch(`/inventory/delete_product/${id}`, {method: "DELETE"}); 
+
+    row.remove();
+    product.delete(id); 
+    renumberRow(); 
+    successmsg.textContent = "Deleted successfully"; 
+  }catch(error){
+    console.log(error)
+  }
+}
 loadProducts();

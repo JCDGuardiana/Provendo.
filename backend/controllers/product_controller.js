@@ -119,3 +119,21 @@ exports.update_product = async (req, res) => {
      return res.status(500).json({ message: "Something went wrong" });
   }
 }
+
+exports.delete_product = async (req, res) =>{
+  const {id} = req.params; 
+
+  try{
+    const row = await product.destroy({where: {id}})
+
+    if(!row){
+      return res.status(404).json({message: "Product not found"}); 
+    }
+    return res.status(200).json({message: "Deleted Successfully"}); 
+
+  }catch(error){
+    console.log("Error : ", error); 
+    return res.status(500).json({message: "Something went wrong"}); 
+  }
+
+}
