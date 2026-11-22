@@ -7,6 +7,8 @@ const tbody = document.getElementById("product_table");
 const successmsg = document.getElementById("successmsg"); 
 const errormsg = document.getElementById("errormsg");
 
+const product = new Map(); 
+let editId = null; 
 
 
 add_product_form.addEventListener('submit', async (e) => {
@@ -33,6 +35,7 @@ add_product_form.addEventListener('submit', async (e) => {
     if(res.ok){
       successmsg.textContent = data.message;
       renderProduct(data.product);
+      editId = null;
       add_product_form.reset(); 
       modal.classList.add("hidden")
     }else{
@@ -46,9 +49,10 @@ add_product_form.addEventListener('submit', async (e) => {
 
 
 openbtn.addEventListener('click' ,(e) => {
-     e.preventDefault(); 
-
-    modal.classList.toggle("hidden"); 
+    e.preventDefault(); 
+    document.getElementById("modal-title").textContent = "Add product"; 
+    document.getElementById("submit").textContent = "Add"
+    modal.classList.remove("hidden"); 
 })
 
 closebtn.addEventListener("click", clsModal); 
@@ -56,13 +60,15 @@ cancelbtn.addEventListener("click", clsModal);
 
 function clsModal(e){
     e.preventDefault(); 
-
+    editId = null; 
+    add_product_form.reset();
     modal.classList.add("hidden"); 
 }
 
 function renderProduct(p) {    
   const row = document.createElement("tr");   
   row.dataset.id = p.id; 
+  product.set(Number(p.id) ,p)
 
   const data = [
     tbody.children.length + 1, 
@@ -88,6 +94,8 @@ function renderProduct(p) {
   action.innerHTML = `  <div class="button-container">
                     <button
                       type="button"
+                      data-action="edit"
+                      aira-label = "Edit"
                       class="rounded border border-gray-300 p-2 text-xs bg-green-600 cursor-pointer"
                     >
                       <svg
@@ -109,6 +117,8 @@ function renderProduct(p) {
 
                     <button
                       type="button"
+                      data-action="delete"
+                      aria-label="Delete"
                       class="rounded border border-gray-300 p-2 text-xs bg-red-600 cursor-pointer"
                     >
                       <svg
@@ -143,5 +153,41 @@ async function loadProducts(){
   }
 }
 
+tbody.addEventListener("click", (e) => {
+  const btn = e.target.closest("button[data-action]"); 
+  if(!btn) return; 
+
+  const row = btn.closest("tr"); 
+  const id = Number(row.dataset.id); 
+  
+  if(btn.dataset.action === "edit"){
+    editModal(id)
+  }else{
+    deleteProduct(id, row);
+  }
+
+})
+
+
+function editModal(id){
+  const p = product.get(id); 
+    modal.classList.remove("hidden");
+
+  if(!p) return; 
+
+  editId = id;
+
+  const product_name = document.getElementById("product_name").value  = p.product_name;
+  const product_code = document.getElementById("product_code").value  = p.product_code; 
+  const unit = document.getElementById("unit").value = p.product_unit; 
+  const stock = document.getElementById("stocks").value = p.stock; 
+  const price = document.getElementById("price").value = p.product_selling_price; 
+  const cost_price = document.getElementById("product_cost_price").value = p.product_cost_price; 
+  const stock_level = document.getElementById("reorder").value = p.stock_level;
+
+  document.getElementById("modal-title").textContent = "Edit product"; 
+  document.getElementById("submit").textContent = "Save"; 
+  modal.classList.remove("hidden");
+}
 
 loadProducts();

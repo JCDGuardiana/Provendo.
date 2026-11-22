@@ -244,6 +244,9 @@
   .inset-0 {
     inset: 0px;
   }
+  .top-0 {
+    top: 0px;
+  }
   .top-1\/2 {
     top: calc(1 / 2 * 100%);
   }
@@ -441,8 +444,8 @@
   .border-separate {
     border-collapse: separate;
   }
-  .border-spacing-y-4 {
-    --tw-border-spacing-y: calc(var(--spacing) * 4);
+  .border-spacing-y-1 {
+    --tw-border-spacing-y: var(--spacing);
     border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);
   }
   .-translate-1\/2 {

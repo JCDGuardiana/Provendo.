@@ -73,21 +73,21 @@
           class="table-wrapper p-4 bg-white rounded-lg mt-6 border border-primary drop-shadow-lg max-h-[60vh] overflow-y-auto"
         >
           <table
-            class="table-auto md:table-fixed w-full text-center border-separate border-spacing-y-4 sticky"
+            class="table-auto md:table-fixed w-full text-center border-separate border-spacing-y-1"
           >
             <thead
               class="uppercase p-2 [&_th:nth-child(odd)]:bg-primary [&_th:nth-child(odd)]:text-white [&_th:nth-child(even)]:bg-gray-100 font-fragment-mono text-sm"
             >
               <tr>
-                <th class="p-2">Id</th>
-                <th class="p-2">Product name</th>
-                <th class="p-2">Product code</th>
-                <th class="p-2">Unit</th>
-                <th class="p-2">Stocks</th>
-                <th class="p-2">Cost price</th>
-                <th class="p-2">Price</th>
-                <th class="p-2">Reorder level</th>
-                <th class="p-2">Actions</th>
+                <th class="p-4 sticky top-0">Id</th>
+                <th class="p-4 sticky top-0">Product name</th>
+                <th class="p-4 sticky top-0">Product code</th>
+                <th class="p-4 sticky top-0">Unit</th>
+                <th class="p-4 sticky top-0">Stocks</th>
+                <th class="p-4 sticky top-0">Cost price</th>
+                <th class="p-4 sticky top-0">Price</th>
+                <th class="p-4 sticky top-0">Reorder level</th>
+                <th class="p-4 sticky top-0">Actions</th>
               </tr>
             </thead>
             <tbody
@@ -109,7 +109,9 @@
           class="form-wrapper flex h-150 max-h-full w-200 max-w-full flex-col rounded-md bg-white p-4"
         >
           <div class="form-title flex items-center justify-between p-4">
-            <h1 class="font-tilt-warp text-lg text-primary">Add product</h1>
+            <h1 class="font-tilt-warp text-lg text-primary" id="modal-title">
+              Add product
+            </h1>
             <button
               type="button"
               class="close-btn cursor-pointer"
@@ -233,6 +235,7 @@
                 </button>
                 <button
                   type="submit"
+                  id="submit"
                   class="rounded-md bg-primary px-5 py-2 font-medium text-white hover:opacity-90"
                 >
                   Add
