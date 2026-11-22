@@ -22,9 +22,12 @@ add_product_form.addEventListener('submit', async (e) => {
   const cost_price = document.getElementById("product_cost_price").value.trim(); 
   const stock_level = document.getElementById("reorder").value.trim();
 
+  const url = editId ? `/inventory/update_product/${editId}` : `/inventory/add_product`
+
+  
   try{
-    const res = await fetch("http://localhost:3000/inventory/add_product", {
-      method: "POST", 
+    const res = await fetch(url, {
+      method: editId ? "PUT" : "POST", 
       headers: {"Content-Type" : "application/json"}, 
       body:JSON.stringify({product_name, product_code, unit, stock, cost_price, price, stock_level})
     }); 
@@ -34,12 +37,21 @@ add_product_form.addEventListener('submit', async (e) => {
 
     if(res.ok){
       successmsg.textContent = data.message;
-      renderProduct(data.product);
+      successmsg.classList.remove("hidden");
+
+      if(editId){
+        update_row(data.product)
+      }else{
+        renderProduct(data.product)
+      }
       editId = null;
       add_product_form.reset(); 
       modal.classList.add("hidden")
-    }else{
-      errormsg.textContent = data.message;
+
+
+      setTimeout(() => {
+      successmsg.classList.add("hidden");
+      },2000)
     }
   }catch(error){
       console.log("Eroor : " , error); 
@@ -50,6 +62,7 @@ add_product_form.addEventListener('submit', async (e) => {
 
 openbtn.addEventListener('click' ,(e) => {
     e.preventDefault(); 
+    editId =null
     document.getElementById("modal-title").textContent = "Add product"; 
     document.getElementById("submit").textContent = "Add"
     modal.classList.remove("hidden"); 
@@ -188,6 +201,21 @@ function editModal(id){
   document.getElementById("modal-title").textContent = "Edit product"; 
   document.getElementById("submit").textContent = "Save"; 
   modal.classList.remove("hidden");
+}
+
+function update_row(p){
+  product.set(Number(p.id), p);
+
+  const row = tbody.querySelector(`tr[data-id="${p.id}"]`);
+  if(!row) return; 
+
+  row.children[1].textContent = p.product_name;
+  row.children[2].textContent = p.product_code;
+  row.children[3].textContent = p.product_unit;
+  row.children[4].textContent = p.stock;
+  row.children[5].textContent = p.product_cost_price;
+  row.children[6].textContent = "₱" + p.product_selling_price;
+  row.children[7].textContent = p.stock_level;
 }
 
 loadProducts();
