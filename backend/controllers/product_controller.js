@@ -120,6 +120,9 @@ exports.update_product = async (req, res) => {
   }
 }
 
+
+
+
 exports.delete_product = async (req, res) =>{
   const {id} = req.params; 
 

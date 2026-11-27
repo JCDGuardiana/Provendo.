@@ -12,4 +12,5 @@ router.get("/get_product", get_product);
 router.post("/add_product", add_product);
 router.put("/update_product/:id", update_product);
 router.delete("/delete_product/:id", delete_product);
+
 module.exports = router;

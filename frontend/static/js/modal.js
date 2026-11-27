@@ -3,6 +3,7 @@ const modal = document.getElementById("form-modal");
 const closebtn = document.getElementById("cls-btn");
 const cancelbtn = document.getElementById("cancel-btn"); 
 const add_product_form = document.getElementById("add-product-form");
+const search_product = document.getElementById("search-product");
 const tbody = document.getElementById("product_table");
 const successmsg = document.getElementById("successmsg"); 
 const errormsg = document.getElementById("errormsg");
@@ -232,4 +233,16 @@ const deleteProduct = async (id, row) => {
     console.log(error)
   }
 }
+
+search_product.addEventListener("input", () => {
+    const input = search_product.value.trim(); 
+    let result = 0; 
+
+    tbody.querySelectorAll("tr[data-id]").forEach((row) => {
+      const product_name = row.children[1].textContent.toLowerCase();
+      const product_code = row.children[2]
+    })
+
+})
+
 loadProducts();
