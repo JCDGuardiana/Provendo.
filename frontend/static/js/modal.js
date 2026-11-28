@@ -235,13 +235,32 @@ const deleteProduct = async (id, row) => {
 }
 
 search_product.addEventListener("input", () => {
-    const input = search_product.value.trim(); 
+    const input = search_product.value.trim().toLowerCase(); 
     let result = 0; 
 
     tbody.querySelectorAll("tr[data-id]").forEach((row) => {
       const product_name = row.children[1].textContent.toLowerCase();
-      const product_code = row.children[2]
+      const product_code = row.children[2].textContent.toLowerCase(); 
+
+      const match = product_name.includes(input) || product_code.includes(input)
+      row.classList.toggle("hidden", !match);
+      
+      if(match){
+        row.children[0].textContent = result
+        result++; 
+      }
     })
+
+
+    //if no product exist 
+    let noResult = document.getElementById("no-result"); 
+    const showResult = result === 0 & input === ""
+    if(noResult){
+      noResult = document.createElement("tr");
+    noResult.id = "no-results-row";
+    noResult.innerHTML = `<td colspan="9" class="p-4">No products found</td>`;
+    tbody.appendChild(noResult);
+    }
 
 })
 
