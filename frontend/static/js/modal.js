@@ -260,6 +260,8 @@ search_product.addEventListener("input", () => {
     noResult.id = "no-results-row";
     noResult.innerHTML = `<td colspan="9" class="p-4">No products found</td>`;
     tbody.appendChild(noResult);
+    }else{
+      noResult.remove()
     }
 
 })
